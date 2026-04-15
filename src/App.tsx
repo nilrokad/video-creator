@@ -85,6 +85,7 @@ CRITICAL: INDIAN MARKET FOCUS (LOWER & MIDDLE CLASS)
 - DEEP SCRIPT ANALYSIS & CONTEXTUAL VISUALS (CRITICAL):
   - STRICT SCRIPT ADHERENCE: DO NOT add any dialogues or script lines on your own. Stick ONLY to the provided script.
   - NO SKIPPING: You MUST cover the entire script in sequence from start to finish. DO NOT skip or miss any part of the story while creating the script plan or final prompts.
+  - NO ANIMATION (CRITICAL): Never mention "animation", "animated", "cartoon", or any related terms in any B-roll descriptions or prompts. All visuals must be photorealistic cinematic realism.
   - VISUAL FIDELITY: Keep the visuals strictly based on the given scenes in the script.
   - ONE PROMPT PER PANEL: Each segment in the "Script Plan (Editable)" MUST result in exactly ONE prompt/scene. DO NOT combine multiple script plan panels into a single prompt.
   - THINK LIKE A DIRECTOR: Do not just visualize the literal words. Analyze the SUBTEXT, EMOTIONAL DEPTH, and SOCIAL CONTEXT of the script.
@@ -129,7 +130,8 @@ CRITICAL: INDIAN MARKET FOCUS (LOWER & MIDDLE CLASS)
     - EYE CONTACT (CRITICAL): When a character speaks directly to the audience, they MUST maintain direct eye contact with the camera. 
       - CONVERSATION EXCEPTION (CRITICAL): If the character is talking to someone else, they MUST look at that person and NOT at the camera.
     - SCENE CONSOLIDATION & TIMING (CRITICAL): DO NOT divide the script into tiny segments for every single dialogue. You can include 2 or 3 scenes max within a single segment prompt to maintain flow. 
-      - You MUST include precise timeline details for each scene (e.g., "0s-3s: Character A walks in, 3s-6s: Character A speaks").
+      - SCENE STRUCTURE (CRITICAL): Every single segment's "scenes" array MUST start with a scene of the narrator/character speaking directly to the camera (UGC style), followed by one or more cinematic B-roll scenes that visually represent the dialogue.
+      - You MUST include precise timeline details for each scene (e.g., "0s-3s: Character A speaks to camera, 3s-6s: B-roll of Character A walking").
       - DIALOGUE TIMING (CRITICAL): Dialogue timing MUST be strictly in sequence only. Do not overlap dialogue timings.
       - MULTI-CHARACTER DIALOGUE: If a scene involves a back-and-forth between characters, combine them into one segment. Follow a sequential "Action + Dialogue" pattern with timings.
       - MULTI-SHOT CUTS & PACING: Keep continuous shots where possible. If there are multiple shots within the same scene, they MUST be quick cuts (no crossfades/wipes). Limit to a MAXIMUM of 3 camera cuts per scene prompt. If there is anything in the dialogue worth showcasing as B-roll or creative visual, use a multi-shot cut for it. Add relevant visuals like a storyteller.
@@ -409,9 +411,17 @@ export default function App() {
       let prompt = "";
       if (videoStyle === "Veo 3.1 JSON") {
         prompt = `You are a script analyst. Divide the following script into logical segments for a video. 
+        
+        SCRIPT UNDERSTANDING (CRITICAL): Analyze the script first. 
+        - If the script is a conversation between two or more people, use the "Character Name: Dialogue" format (e.g., "Rajesh: नमस्ते, कैसे हो?").
+        - If it is a single person speaking or a narrator, just provide the dialogue text. 
+        - DO NOT force a conversation format if the script does not naturally have one.
+        
         For each segment, provide:
         1. The script text (MUST be in Hindi as provided).
         2. A creative B-roll idea that visually represents that part of the script.
+        
+        CRITICAL: Never mention "animation" or "animated" in the B-roll ideas.
         
         Format the output as a JSON object with a "segments" array containing objects with "script" and "broll" fields.
         
@@ -430,8 +440,11 @@ export default function App() {
            - CRITICAL: These segments MUST cover the entire script sequentially without skipping any lines. Every single sentence of the script MUST be included in the "script" field of these segments in the exact order they appear.
         2. "brollSegments": A list of cinematic B-roll segments that visually narrate the story. These should be "small cuts" of activities or actions. Provide only a short "broll" description.
            - CRITICAL: These segments MUST visually narrate the entire script from start to finish in sequence. Every part of the story MUST have a corresponding B-roll segment.
+           - CRITICAL: Never mention "animation" or "animated" in the B-roll descriptions.
         
         CRITICAL: For "${videoStyle}", you MUST generate a high volume of B-roll segments (at least 12-15 segments) to ensure a rich visual narrative that covers EVERY SINGLE LINE of the script from start to finish in sequence. DO NOT skip any part of the story.
+        
+        CRITICAL: Never mention "animation" or "animated" in any part of the output.
         
         Format the output as a JSON object with "dialogueSegments" and "brollSegments" arrays.
         
