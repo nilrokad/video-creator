@@ -132,9 +132,9 @@ CRITICAL: INDIAN MARKET FOCUS (LOWER & MIDDLE CLASS)
     - ACTION DURING DIALOGUE: Keep movements simple and minimal. Use multi-shots for pacing, but actions should be small and at normal speed. Just a hint of action is enough; do not overcomplicate the movement while they speak.
     - EYE CONTACT (CRITICAL): When a character speaks directly to the audience, they MUST maintain direct eye contact with the camera. 
       - CONVERSATION EXCEPTION (CRITICAL): If the character is talking to someone else, they MUST look at that person and NOT at the camera.
-    - SCENE CONSOLIDATION & TIMING (CRITICAL): DO NOT divide the script into tiny segments for every single dialogue. You can include 2 or 3 scenes max within a single segment prompt to maintain flow. 
-      - SCENE STRUCTURE (CRITICAL): Every single segment's "scenes" array MUST start with a scene of the narrator/character speaking directly to the camera (UGC style), followed by one or more cinematic B-roll scenes that visually represent the dialogue.
-      - You MUST include precise timeline details for each scene (e.g., "0s-3s: Character A speaks to camera, 3s-6s: B-roll of Character A walking").
+    - SCENE LIMIT (CRITICAL): For "Veo 3.1 JSON" and "Veo 3.1 JSON Storytelling", each prompt MUST contain exactly ONE scene in the 'scenes' array. DO NOT combine multiple scenes, dialogue lines, or B-rolls into a single prompt. Every prompt must be a single, focused scene.
+      - SCENE STRUCTURE (CRITICAL): For these styles, the prompts should alternate or be sequenced such that dialogue prompts show the narrator speaking to the camera, and B-roll prompts show the cinematic action. DO NOT put both in the same JSON prompt.
+      - You MUST include precise timeline details for the single scene (e.g., "0s-6s: Character A speaks to camera").
       - DIALOGUE TIMING (CRITICAL): Dialogue timing MUST be strictly in sequence only. Do not overlap dialogue timings.
       - MULTI-CHARACTER DIALOGUE: If a scene involves a back-and-forth between characters, combine them into one segment. Follow a sequential "Action + Dialogue" pattern with timings.
       - MULTI-SHOT CUTS & PACING: Keep continuous shots where possible. If there are multiple shots within the same scene, they MUST be quick cuts (no crossfades/wipes). Limit to a MAXIMUM of 2 camera cuts per scene prompt for B-roll, and 3 for dialogue. If there is anything in the dialogue worth showcasing as B-roll or creative visual, use a multi-shot cut for it. Add relevant visuals like a storyteller.
