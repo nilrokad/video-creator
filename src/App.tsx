@@ -22,6 +22,7 @@ import {
 import { motion, AnimatePresence } from 'motion/react';
 
 interface EditableSegment {
+  title?: string;
   script: string;
   broll: string;
 }
@@ -87,6 +88,8 @@ CRITICAL: INDIAN MARKET FOCUS (LOWER & MIDDLE CLASS)
   - NO SKIPPING: You MUST cover the entire script in sequence from start to finish. DO NOT skip or miss any part of the story while creating the script plan or final prompts.
   - NO ANIMATION (CRITICAL): Never mention "animation", "animated", "cartoon", or any related terms in any B-roll descriptions or prompts. All visuals must be photorealistic cinematic realism.
   - VISUAL FIDELITY: Keep the visuals strictly based on the given scenes in the script.
+  - SCRIPT PLAN AS SOURCE (CRITICAL): The "Script Plan (Editable)" is the final source for all prompt generation. Each segment in the plan (Prompt 1, Prompt 2, etc.) MUST result in exactly ONE prompt.
+  - START WITH HOOK: The first prompt in any video style MUST be a "Hook" that captures attention immediately.
   - ONE PROMPT PER PANEL: Each segment in the "Script Plan (Editable)" MUST result in exactly ONE prompt/scene. DO NOT combine multiple script plan panels into a single prompt.
   - THINK LIKE A DIRECTOR: Do not just visualize the literal words. Analyze the SUBTEXT, EMOTIONAL DEPTH, and SOCIAL CONTEXT of the script.
   - SCRIPT UNDERSTANDING: You MUST understand the core message, the characters' motivations, and the setting. If the script is about a midnight conversation, the visuals MUST be dark and moody. If it's about a struggle, the visuals MUST reflect that.
@@ -134,22 +137,30 @@ CRITICAL: INDIAN MARKET FOCUS (LOWER & MIDDLE CLASS)
       - You MUST include precise timeline details for each scene (e.g., "0s-3s: Character A speaks to camera, 3s-6s: B-roll of Character A walking").
       - DIALOGUE TIMING (CRITICAL): Dialogue timing MUST be strictly in sequence only. Do not overlap dialogue timings.
       - MULTI-CHARACTER DIALOGUE: If a scene involves a back-and-forth between characters, combine them into one segment. Follow a sequential "Action + Dialogue" pattern with timings.
-      - MULTI-SHOT CUTS & PACING: Keep continuous shots where possible. If there are multiple shots within the same scene, they MUST be quick cuts (no crossfades/wipes). Limit to a MAXIMUM of 3 camera cuts per scene prompt. If there is anything in the dialogue worth showcasing as B-roll or creative visual, use a multi-shot cut for it. Add relevant visuals like a storyteller.
+      - MULTI-SHOT CUTS & PACING: Keep continuous shots where possible. If there are multiple shots within the same scene, they MUST be quick cuts (no crossfades/wipes). Limit to a MAXIMUM of 2 camera cuts per scene prompt for B-roll, and 3 for dialogue. If there is anything in the dialogue worth showcasing as B-roll or creative visual, use a multi-shot cut for it. Add relevant visuals like a storyteller.
+      - NO APP/TRIAL VISUALS (CRITICAL): DO NOT include B-rolls showing "downloading master app", "1 rs trial", or any app-interface/payment-related visuals unless explicitly requested in the script. Focus on real-life activities.
       - ENVIRONMENT & ANGLES: Each scene MUST use a different camera angle and background perspective, but it MUST remain strictly within the SAME overall environment established for the shoot.
       - CONTINUITY IN ACTION: When mentioning character action after a new shot, you MUST explicitly append "wearing same cloth" to ensure visual consistency.
     - OUTPUT FORMAT (CRITICAL): For all segments AFTER the initial moodboards and Overall Direction, the "prompt" field MUST be a stringified JSON object following the EXACT Veo 3.1 JSON Template below.
 
   - "Veo 3.1 JSON Storytelling":
     - Inherits ALL rules from "Veo 3.1 JSON".
+    - NARRATOR LOGIC (CRITICAL): 
+      - If the script is first-person ("I did this", "Mene ye kiya"), the main character IS the narrator. 
+      - If the script is third-person (telling someone else's story), create a separate narrator character who tells the story.
+    - UGC CHARACTER LOCATION: For UGC scenes, the character should be mostly OUTSIDE in natural environments.
+    - LIVE NATURAL MOOD: Include a few background people in the scenes to create a "live natural mood". They should be doing basic work, walking, or sitting, but MUST NOT be the focus and MUST NOT disturb the main character.
+    - BASIC ACTIVITIES: In the starting 2 prompts (and throughout as appropriate), the character should perform basic activities based on the script (e.g., walking slowly, sipping coffee, scrolling phone, fixing hair, holding a product).
+    - ENVIRONMENT LOGIC: The environment must be logical for the activity (e.g., a sewing machine can be inside a house or outside if it fits the story). If indoors, maintain the "live natural mood" with background characters doing quiet, non-disturbing work.
     - SCRIPT DOUBLE PASS (CRITICAL): You MUST cover the entire script TWICE in the scenes array.
     - PASS 1 (UGC STYLE): The first set of scenes covers the entire script with the character speaking directly to the camera in various backgrounds (like a UGC content creator). Follow standard dialogue rules.
-    - PASS 2 (CINEMATIC B-ROLL): After the UGC scenes, provide a COMPLETE start-to-end visual narrative using B-roll scenes (at least 8-10 scenes). These scenes MUST visually narrate the entire script from beginning to end without any dialogue, creating a full cinematic story. These must be clean, movie-like storytelling with actions and visuals ONLY. STRICTLY NO dialogue speaking in these B-roll scenes. The character MUST NOT open their mouth or speak; they should only act out the scene.
+    - PASS 2 (CINEMATIC B-ROLL): After the UGC scenes, provide a COMPLETE start-to-end visual narrative using B-roll scenes (at least 7-8 scenes). These scenes MUST visually narrate the entire script from beginning to end without any dialogue, creating a full cinematic story. These must be clean, movie-like storytelling with actions and visuals ONLY. STRICTLY NO dialogue speaking in these B-roll scenes. The character MUST NOT open their mouth or speak; they should only act out the scene. Limit to a MAXIMUM of 2 scenes per prompt in this pass.
 
   - "Veo 3.1 JSON Conversation":
     - Inherits ALL rules from "Veo 3.1 JSON".
     - SCRIPT DOUBLE PASS (CRITICAL): Like the Storytelling style, you MUST cover the entire script TWICE in the scenes array.
     - PASS 1 (CONVERSATION STYLE): The first set of scenes covers the entire script with the back-and-forth conversation between two characters. Follow standard dialogue and conversation rules.
-    - PASS 2 (CINEMATIC B-ROLL): After the conversation scenes, provide a COMPLETE start-to-end visual narrative using B-roll scenes (at least 8-10 scenes). These scenes MUST visually narrate the entire script from beginning to end without any dialogue, creating a full cinematic story. These must be clean, movie-like storytelling with actions and visuals ONLY. STRICTLY NO dialogue speaking in these B-roll scenes. The characters MUST NOT open their mouth or speak; they should only act out the scene.
+    - PASS 2 (CINEMATIC B-ROLL): After the conversation scenes, provide a COMPLETE start-to-end visual narrative using B-roll scenes (at least 7-8 scenes). These scenes MUST visually narrate the entire script from beginning to end without any dialogue, creating a full cinematic story. These must be clean, movie-like storytelling with actions and visuals ONLY. STRICTLY NO dialogue speaking in these B-roll scenes. The characters MUST NOT open their mouth or speak; they should only act out the scene. Limit to a MAXIMUM of 2 scenes per prompt in this pass.
     - STRICT SCRIPT ADHERENCE (CRITICAL): DO NOT add any dialogues on your own. Stick ONLY to the provided script.
     - STRICT 2-CHARACTER FORMAT: Use this for back-and-forth dialogue between two characters.
     - SINGLE COMBINED MOODBOARD: Instead of two separate character moodboards, Segment 0 MUST be a single combined moodboard. Provide exactly 4 high-detail close-up shots in a 2x2 grid: 2 shots of Character 1 (front face, mid closeup) and 2 shots of Character 2 (front face, mid closeup).
@@ -413,17 +424,19 @@ export default function App() {
         prompt = `You are a script analyst. Divide the following script into logical segments for a video. 
         
         SCRIPT UNDERSTANDING (CRITICAL): Analyze the script first. 
+        - The first segment MUST be a "Hook" that grabs attention.
         - If the script is a conversation between two or more people, use the "Character Name: Dialogue" format (e.g., "Rajesh: नमस्ते, कैसे हो?").
         - If it is a single person speaking or a narrator, just provide the dialogue text. 
         - DO NOT force a conversation format if the script does not naturally have one.
         
         For each segment, provide:
-        1. The script text (MUST be in Hindi as provided).
-        2. A creative B-roll idea that visually represents that part of the script.
+        1. A title in the format "Prompt 1", "Prompt 2", etc.
+        2. The script text (MUST be in Hindi as provided).
+        3. A creative B-roll idea that visually represents that part of the script.
         
         CRITICAL: Never mention "animation" or "animated" in the B-roll ideas.
         
-        Format the output as a JSON object with a "segments" array containing objects with "script" and "broll" fields.
+        Format the output as a JSON object with a "segments" array containing objects with "title", "script" and "broll" fields.
         
         SCRIPT: ${idea}
         VIDEO STYLE: ${videoStyle}`;
@@ -432,17 +445,27 @@ export default function App() {
         
         CRITICAL: You MUST NOT skip or miss any part of the script. The segments MUST cover the entire script from the first word to the last word in exact sequence.
         
+        NARRATOR ANALYSIS: Analyze if the script is first-person (the character telling their own story) or third-person (a narrator telling someone else's story).
+        
+        The first segment in "dialogueSegments" MUST be a "Hook".
+        
         For "${videoStyle}", you MUST provide TWO separate lists:
         1. "dialogueSegments": 
-           - For "Storytelling": A list of segments where the character speaks to the camera (UGC style).
+           - For "Storytelling": A list of segments where the character speaks to the camera (UGC style). 
+             - If first-person, the main character is the speaker. 
+             - If third-person, a separate narrator is the speaker.
+             - Include basic activities for the speaker (e.g., walking, sipping tea, scrolling phone) that fit the script.
            - For "Conversation": A list of segments where characters talk to EACH OTHER (NOT to the camera).
            - CRITICAL: In the "script" field, you MUST include the character's name followed by their dialogue in Hindi (e.g., "Rajesh: नमस्ते, कैसे हो?").
            - CRITICAL: These segments MUST cover the entire script sequentially without skipping any lines. Every single sentence of the script MUST be included in the "script" field of these segments in the exact order they appear.
+           - Each segment should have a "title" like "Prompt 1", "Prompt 2", etc.
         2. "brollSegments": A list of cinematic B-roll segments that visually narrate the story. These should be "small cuts" of activities or actions. Provide only a short "broll" description.
            - CRITICAL: These segments MUST visually narrate the entire script from start to finish in sequence. Every part of the story MUST have a corresponding B-roll segment.
            - CRITICAL: Never mention "animation" or "animated" in the B-roll descriptions.
+           - CRITICAL: DO NOT include B-rolls showing "downloading master app" or "1 rs trial".
+           - Each segment should have a "title" like "B-Roll Prompt 1", "B-Roll Prompt 2", etc.
         
-        CRITICAL: For "${videoStyle}", you MUST generate a high volume of B-roll segments (at least 12-15 segments) to ensure a rich visual narrative that covers EVERY SINGLE LINE of the script from start to finish in sequence. DO NOT skip any part of the story.
+        CRITICAL: For "${videoStyle}", you MUST generate a high volume of B-roll segments (at least 7-8 segments) to ensure a rich visual narrative that covers EVERY SINGLE LINE of the script from start to finish in sequence. DO NOT skip any part of the story.
         
         CRITICAL: Never mention "animation" or "animated" in any part of the output.
         
@@ -477,15 +500,15 @@ export default function App() {
   };
 
   const addEditableSegment = () => {
-    setEditableSegments([...editableSegments, { script: '', broll: '' }]);
+    setEditableSegments([...editableSegments, { title: `Prompt ${editableSegments.length + 1}`, script: '', broll: '' }]);
   };
 
   const addDialogueSegment = () => {
-    setEditableDialogueSegments([...editableDialogueSegments, { script: '' }]);
+    setEditableDialogueSegments([...editableDialogueSegments, { title: `Prompt ${editableDialogueSegments.length + 1}`, script: '', broll: '' }]);
   };
 
   const addBrollSegment = () => {
-    setEditableBrollSegments([...editableBrollSegments, { broll: '' }]);
+    setEditableBrollSegments([...editableBrollSegments, { title: `B-Roll Prompt ${editableBrollSegments.length + 1}`, script: '', broll: '' }]);
   };
 
   const updateEditableSegment = (index: number, field: keyof EditableSegment, value: string) => {
@@ -535,7 +558,7 @@ export default function App() {
         : JSON.stringify({ dialogueSegments: editableDialogueSegments, brollSegments: editableBrollSegments });
 
       const parts: any[] = [
-        { text: `USER SCRIPT PLAN: ${plan}\nVIDEO STYLE: ${videoStyle}${imageText ? `\nREQUIRED TEXT CONTENT (USE EXACTLY AS IS, DO NOT ALTER): "${imageText}"` : ''}\n\nBased on the provided script segments and B-roll ideas, generate the final hyper-detailed architectural blueprints for Recraft V4. CRITICAL: You MUST cover EVERY SINGLE segment and B-roll idea provided in the plan in the exact sequence. DO NOT skip or combine any segments.` }
+        { text: `USER SCRIPT PLAN: ${plan}\nVIDEO STYLE: ${videoStyle}${imageText ? `\nREQUIRED TEXT CONTENT (USE EXACTLY AS IS, DO NOT ALTER): "${imageText}"` : ''}\n\nBased on the provided script segments and B-roll ideas, generate the final hyper-detailed architectural blueprints for Recraft V4. CRITICAL: The "USER SCRIPT PLAN" provided above is your ONLY source for the story. You MUST cover EVERY SINGLE segment and B-roll idea provided in the plan in the exact sequence. DO NOT skip or combine any segments. The final prompts MUST be built strictly from the dialogue/script content in these boxes, keeping the storyline consistent.` }
       ];
 
       if (referenceImage) {
@@ -861,12 +884,15 @@ export default function App() {
                     {videoStyle === "Veo 3.1 JSON" ? (
                       editableSegments.map((seg, idx) => (
                         <div key={idx} className="p-4 bg-white/5 rounded-xl border border-white/10 space-y-3 relative group">
-                          <button 
-                            onClick={() => removeEditableSegment(idx)}
-                            className="absolute -top-2 -right-2 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10"
-                          >
-                            <X className="w-3 h-3" />
-                          </button>
+                          <div className="flex items-center justify-between mb-1">
+                            <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">{seg.title || `Prompt ${idx + 1}`}</span>
+                            <button 
+                              onClick={() => removeEditableSegment(idx)}
+                              className="p-1 bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white rounded-lg transition-all opacity-0 group-hover:opacity-100"
+                            >
+                              <X className="w-3 h-3" />
+                            </button>
+                          </div>
                           <div>
                             <label className="text-[9px] font-mono text-muted uppercase tracking-widest block mb-1">Script (Hindi)</label>
                             <textarea 
@@ -904,12 +930,15 @@ export default function App() {
                           <div className="space-y-3 max-h-[250px] overflow-y-auto pr-2 custom-scrollbar">
                             {editableDialogueSegments.map((seg, idx) => (
                               <div key={idx} className="p-3 bg-white/5 rounded-xl border border-white/10 relative group">
-                                <button 
-                                  onClick={() => removeDialogueSegment(idx)}
-                                  className="absolute -top-2 -right-2 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10"
-                                >
-                                  <X className="w-3 h-3" />
-                                </button>
+                                <div className="flex items-center justify-between mb-2">
+                                  <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">{seg.title || `Prompt ${idx + 1}`}</span>
+                                  <button 
+                                    onClick={() => removeDialogueSegment(idx)}
+                                    className="p-1 bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white rounded-lg transition-all opacity-0 group-hover:opacity-100"
+                                  >
+                                    <X className="w-3 h-3" />
+                                  </button>
+                                </div>
                                 <textarea 
                                   className="input-field w-full text-sm min-h-[50px] resize-none"
                                   placeholder="Enter Hindi script..."
@@ -936,12 +965,15 @@ export default function App() {
                           <div className="space-y-3 max-h-[250px] overflow-y-auto pr-2 custom-scrollbar">
                             {editableBrollSegments.map((seg, idx) => (
                               <div key={idx} className="p-3 bg-white/5 rounded-xl border border-white/10 relative group">
-                                <button 
-                                  onClick={() => removeBrollSegment(idx)}
-                                  className="absolute -top-2 -right-2 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10"
-                                >
-                                  <X className="w-3 h-3" />
-                                </button>
+                                <div className="flex items-center justify-between mb-2">
+                                  <span className="text-[10px] font-bold text-amber-400 uppercase tracking-widest">{seg.title || `B-Roll Prompt ${idx + 1}`}</span>
+                                  <button 
+                                    onClick={() => removeBrollSegment(idx)}
+                                    className="p-1 bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white rounded-lg transition-all opacity-0 group-hover:opacity-100"
+                                  >
+                                    <X className="w-3 h-3" />
+                                  </button>
+                                </div>
                                 <textarea 
                                   className="input-field w-full text-sm min-h-[50px] resize-none border-amber-500/20"
                                   placeholder="Enter B-roll action..."
