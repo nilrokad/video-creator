@@ -84,6 +84,7 @@ CRITICAL: INDIAN MARKET FOCUS (LOWER & MIDDLE CLASS)
   - RAW & REAL: Avoid "aesthetic" or "planted" looks. NO indoor plants, NO decorative vases, NO modern art. The environment should feel functional and lived-in, not curated for social media.
 - DEEP SCRIPT ANALYSIS & CONTEXTUAL VISUALS (CRITICAL):
   - STRICT SCRIPT ADHERENCE: DO NOT add any dialogues or script lines on your own. Stick ONLY to the provided script.
+  - NO SKIPPING: You MUST cover the entire script in sequence from start to finish. DO NOT skip or miss any part of the story while creating the script plan or final prompts.
   - VISUAL FIDELITY: Keep the visuals strictly based on the given scenes in the script.
   - ONE PROMPT PER PANEL: Each segment in the "Script Plan (Editable)" MUST result in exactly ONE prompt/scene. DO NOT combine multiple script plan panels into a single prompt.
   - THINK LIKE A DIRECTOR: Do not just visualize the literal words. Analyze the SUBTEXT, EMOTIONAL DEPTH, and SOCIAL CONTEXT of the script.
@@ -419,14 +420,18 @@ export default function App() {
       } else {
         prompt = `You are a script analyst. Divide the following script into logical segments for a video.
         
+        CRITICAL: You MUST NOT skip or miss any part of the script. The segments MUST cover the entire script from the first word to the last word in exact sequence.
+        
         For "${videoStyle}", you MUST provide TWO separate lists:
         1. "dialogueSegments": 
            - For "Storytelling": A list of segments where the character speaks to the camera (UGC style).
            - For "Conversation": A list of segments where characters talk to EACH OTHER (NOT to the camera).
            - CRITICAL: In the "script" field, you MUST include the character's name followed by their dialogue in Hindi (e.g., "Rajesh: नमस्ते, कैसे हो?").
+           - CRITICAL: These segments MUST cover the entire script sequentially without skipping any lines. Every single sentence of the script MUST be included in the "script" field of these segments in the exact order they appear.
         2. "brollSegments": A list of cinematic B-roll segments that visually narrate the story. These should be "small cuts" of activities or actions. Provide only a short "broll" description.
+           - CRITICAL: These segments MUST visually narrate the entire script from start to finish in sequence. Every part of the story MUST have a corresponding B-roll segment.
         
-        CRITICAL: For "${videoStyle}", you MUST generate a high volume of B-roll segments (at least 10-12 segments) to ensure a rich visual narrative that covers the entire script from start to finish.
+        CRITICAL: For "${videoStyle}", you MUST generate a high volume of B-roll segments (at least 12-15 segments) to ensure a rich visual narrative that covers EVERY SINGLE LINE of the script from start to finish in sequence. DO NOT skip any part of the story.
         
         Format the output as a JSON object with "dialogueSegments" and "brollSegments" arrays.
         
@@ -517,7 +522,7 @@ export default function App() {
         : JSON.stringify({ dialogueSegments: editableDialogueSegments, brollSegments: editableBrollSegments });
 
       const parts: any[] = [
-        { text: `USER SCRIPT PLAN: ${plan}\nVIDEO STYLE: ${videoStyle}${imageText ? `\nREQUIRED TEXT CONTENT (USE EXACTLY AS IS, DO NOT ALTER): "${imageText}"` : ''}\n\nBased on the provided script segments and B-roll ideas, generate the final hyper-detailed architectural blueprints for Recraft V4.` }
+        { text: `USER SCRIPT PLAN: ${plan}\nVIDEO STYLE: ${videoStyle}${imageText ? `\nREQUIRED TEXT CONTENT (USE EXACTLY AS IS, DO NOT ALTER): "${imageText}"` : ''}\n\nBased on the provided script segments and B-roll ideas, generate the final hyper-detailed architectural blueprints for Recraft V4. CRITICAL: You MUST cover EVERY SINGLE segment and B-roll idea provided in the plan in the exact sequence. DO NOT skip or combine any segments.` }
       ];
 
       if (referenceImage) {
