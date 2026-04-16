@@ -45,7 +45,8 @@ interface HistoryItem {
 const VIDEO_STYLES = [
   "Veo 3.1 JSON",
   "Veo 3.1 JSON Storytelling",
-  "Veo 3.1 JSON Conversation"
+  "Veo 3.1 JSON Conversation",
+  "Veo 3.1 JSON Movie"
 ];
 
 const MODELS = [
@@ -85,6 +86,7 @@ CRITICAL: INDIAN MARKET FOCUS (LOWER & MIDDLE CLASS)
   - RAW & REAL: Avoid "aesthetic" or "planted" looks. NO indoor plants, NO decorative vases, NO modern art. The environment should feel functional and lived-in, not curated for social media.
 - DEEP SCRIPT ANALYSIS & CONTEXTUAL VISUALS (CRITICAL):
   - STRICT SCRIPT ADHERENCE: DO NOT add any dialogues or script lines on your own. Stick ONLY to the provided script.
+  - NO DIALOGUE REFORMING (CRITICAL): You MUST NEVER change, rephrase, or reform the script's lines, words, or sentences. NEVER add or remove any words. Always stick EXACTLY to the final script plan dialogues in each prompt box.
   - NO SKIPPING: You MUST cover the entire script in sequence from start to finish. DO NOT skip or miss any part of the story while creating the script plan or final prompts.
   - NO ANIMATION (CRITICAL): Never mention "animation", "animated", "cartoon", or any related terms in any B-roll descriptions or prompts. All visuals must be photorealistic cinematic realism.
   - VISUAL FIDELITY: Keep the visuals strictly based on the given scenes in the script.
@@ -171,7 +173,16 @@ CRITICAL: INDIAN MARKET FOCUS (LOWER & MIDDLE CLASS)
     - NO TWO-SHOTS: Do NOT use over-the-shoulder (OTS) or wide shots showing both characters clearly while they are speaking.
     - CUTTING: Use quick cuts between the speakers. If only one person is speaking in a segment, maintain focus on them.
 
-  - VEO 3.1 JSON TEMPLATE (USED FOR ALL 3 STYLES):
+  - "Veo 3.1 JSON Movie":
+    - Inherits ALL rules from "Veo 3.1 JSON".
+    - CINEMATIC STORYTELLING: Unlike UGC storytelling, this is a cinematic movie scene. Characters interact with each other and their environment, NOT the camera (unless explicitly requested in the script, e.g., a final CTA).
+    - SILENT LISTENER RULE (CRITICAL): If there are two or more people in a scene and only one is speaking, you MUST explicitly state in the prompt that the other character is "listening silently without speaking a single word, just there for presence".
+    - SEQUENTIAL MOVIE FLOW: The scenes must flow logically like a movie sequence. For example, a character enters, an action happens, they sit together, and then the dialogue begins.
+    - SCRIPT DOUBLE PASS (CRITICAL): You MUST cover the entire script TWICE in the scenes array.
+    - PASS 1 (MOVIE DIALOGUE STYLE): The first set of scenes covers the entire script as a cinematic movie. Follow standard dialogue rules but keep the interactions between characters/environment.
+    - PASS 2 (CINEMATIC B-ROLL): After the movie dialogue scenes, provide a COMPLETE start-to-end visual narrative using B-roll scenes (at least 7-8 scenes). These must be clean, movie-like storytelling with actions and visuals ONLY. STRICTLY NO dialogue speaking in these B-roll scenes. Limit to a MAXIMUM of 2 scenes per prompt in this pass.
+
+  - VEO 3.1 JSON TEMPLATE (USED FOR ALL 4 STYLES):
     {
       "version": "veo-3.1",
       "output": {
@@ -444,6 +455,7 @@ export default function App() {
         prompt = `You are a script analyst. Divide the following script into logical segments for a video.
         
         CRITICAL: You MUST NOT skip or miss any part of the script. The segments MUST cover the entire script from the first word to the last word in exact sequence.
+        CRITICAL: DO NOT REFORM OR REPHRASE DIALOGUES. You must use the exact lines, words, and sentences from the script. Never add or remove any words.
         
         NARRATOR ANALYSIS: Analyze if the script is first-person (the character telling their own story) or third-person (a narrator telling someone else's story).
         
@@ -456,6 +468,7 @@ export default function App() {
              - If third-person, a separate narrator is the speaker.
              - Include basic activities for the speaker (e.g., walking, sipping tea, scrolling phone) that fit the script.
            - For "Conversation": A list of segments where characters talk to EACH OTHER (NOT to the camera).
+           - For "Movie": A list of segments formatted as cinematic movie scenes. Characters interact with each other or the environment, NOT the camera (unless specified). If one character speaks and another is present, explicitly note the other is "listening silently".
            - CRITICAL: In the "script" field, you MUST include the character's name followed by their dialogue in Hindi (e.g., "Rajesh: नमस्ते, कैसे हो?").
            - CRITICAL: These segments MUST cover the entire script sequentially without skipping any lines. Every single sentence of the script MUST be included in the "script" field of these segments in the exact order they appear.
            - Each segment should have a "title" like "Prompt 1", "Prompt 2", etc.
@@ -558,7 +571,7 @@ export default function App() {
         : JSON.stringify({ dialogueSegments: editableDialogueSegments, brollSegments: editableBrollSegments });
 
       const parts: any[] = [
-        { text: `USER SCRIPT PLAN: ${plan}\nVIDEO STYLE: ${videoStyle}${imageText ? `\nREQUIRED TEXT CONTENT (USE EXACTLY AS IS, DO NOT ALTER): "${imageText}"` : ''}\n\nBased on the provided script segments and B-roll ideas, generate the final hyper-detailed architectural blueprints for Recraft V4. CRITICAL: The "USER SCRIPT PLAN" provided above is your ONLY source for the story. You MUST cover EVERY SINGLE segment and B-roll idea provided in the plan in the exact sequence. DO NOT skip or combine any segments. The final prompts MUST be built strictly from the dialogue/script content in these boxes, keeping the storyline consistent.` }
+        { text: `USER SCRIPT PLAN: ${plan}\nVIDEO STYLE: ${videoStyle}${imageText ? `\nREQUIRED TEXT CONTENT (USE EXACTLY AS IS, DO NOT ALTER): "${imageText}"` : ''}\n\nBased on the provided script segments and B-roll ideas, generate the final hyper-detailed architectural blueprints for Recraft V4. CRITICAL: The "USER SCRIPT PLAN" provided above is your ONLY source for the story. You MUST cover EVERY SINGLE segment and B-roll idea provided in the plan in the exact sequence. DO NOT skip or combine any segments. The final prompts MUST be built strictly from the dialogue/script content in these boxes, keeping the storyline consistent. CRITICAL: DO NOT REFORM OR REPHRASE DIALOGUES. You must use the exact lines, words, and sentences from the script plan. Never add or remove any words.` }
       ];
 
       if (referenceImage) {
@@ -917,7 +930,7 @@ export default function App() {
                         <div className="space-y-4">
                           <div className="flex items-center justify-between mb-2">
                             <h3 className="label mb-0 text-emerald-400">
-                              {videoStyle === "Veo 3.1 JSON Storytelling" ? "Dialogue Segments (UGC)" : "Dialogue Segments (Conversation)"}
+                              {videoStyle === "Veo 3.1 JSON Storytelling" ? "Dialogue Segments (UGC)" : videoStyle === "Veo 3.1 JSON Movie" ? "Movie Segments (Cinematic)" : "Dialogue Segments (Conversation)"}
                             </h3>
                             <button 
                               onClick={addDialogueSegment}
