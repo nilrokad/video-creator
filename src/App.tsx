@@ -175,8 +175,14 @@ CRITICAL: INDIAN MARKET FOCUS (LOWER & MIDDLE CLASS)
 
   - "Veo 3.1 JSON Movie":
     - Inherits ALL rules from "Veo 3.1 JSON".
-    - CINEMATIC STORYTELLING: Unlike UGC storytelling, this is a cinematic movie scene. Characters interact with each other and their environment, NOT the camera (unless explicitly requested in the script, e.g., a final CTA).
+    - CINEMATIC STORYTELLING: Unlike UGC storytelling, this is a cinematic movie scene. Characters interact with each other and their environment.
+    - NO CAMERA EYE CONTACT (CRITICAL): Characters MUST NEVER look directly into the camera. They must look at each other or their surroundings.
+    - SHOT COMPOSITION & CUTTING (CRITICAL): 
+      - Show ONLY Mid Close-Up (MCU) shots of characters while they are speaking.
+      - Dialogue MUST start AFTER a scene change. When there are two characters, cut to the Mid Close-Up of the first character, then they speak. 
+      - When the first character's dialogue finishes, immediately cut to the Mid Close-Up of the other character for their reaction or dialogue.
     - SILENT LISTENER RULE (CRITICAL): If there are two or more people in a scene and only one is speaking, you MUST explicitly state in the prompt that the other character is "listening silently without speaking a single word, just there for presence".
+    - ALIVE BACKGROUND (CRITICAL): The background MUST feel alive and dynamic, not like a still image. Explicitly include background activity (e.g., leaves moving, people walking in the distance, subtle traffic, flickering light) to ensure the scene feels active.
     - SEQUENTIAL MOVIE FLOW: The scenes must flow logically like a movie sequence. For example, a character enters, an action happens, they sit together, and then the dialogue begins.
     - SCRIPT DOUBLE PASS (CRITICAL): You MUST cover the entire script TWICE in the scenes array.
     - PASS 1 (MOVIE DIALOGUE STYLE): The first set of scenes covers the entire script as a cinematic movie. Follow standard dialogue rules but keep the interactions between characters/environment.
