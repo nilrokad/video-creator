@@ -46,7 +46,9 @@ const VIDEO_STYLES = [
   "Veo 3.1 JSON",
   "Veo 3.1 JSON Storytelling",
   "Veo 3.1 JSON Conversation",
-  "Veo 3.1 JSON Movie"
+  "Veo 3.1 JSON Movie",
+  "Veo 3.1 JSON Authoritative Speaker",
+  "Veo 3.1 JSON Only B-roll"
 ];
 
 const MODELS = [
@@ -63,7 +65,8 @@ CRITICAL: INDIAN MARKET FOCUS (LOWER & MIDDLE CLASS)
 - TARGET AUDIENCE: The entire visual language MUST be tailored to the Indian lower-middle and lower-class demographic.
 - CHARACTERS: All characters must be Indian, reflecting regular, everyday people. 
   - PHYSICAL APPEARANCE: Characters should have a natural, hard-working Indian look. Sun-tanned skin is fine. DO NOT show "healthy looking" or "fashionable" people; they should look like common, lower-middle class individuals. 
-  - OUTFITS: Basic desi dressing (simple cotton kurtas, shirts, lungis, sarees, or casual local wear). Clothes should be simple and desi. NO fashionable or expensive-looking outfits. 
+  - UNIQUE FEATURES (CRITICAL): You MUST create highly varied and unique facial features for every new character you introduce. Characters must look distinctly different from one another (varying face shapes, skin textures, hairlines, and ages based on our audience). Ensure they do not all look the same.
+  - OUTFITS & COLORS (CRITICAL): Basic desi dressing (simple cotton kurtas, shirts, lungis, sarees, or casual local wear). You MUST use a WIDE VARIETY OF COLORS for outfits (e.g., faded mustards, deep maroons, dusty blues, olive greens, varied local prints). Do NOT default to the same generic outfit colors for every prompt.
   - CONDITION: Clothes MUST be clean enough to be respectable but can have a "basic dirty" or "lived-in" look to reflect real-life work/demographics. DO NOT show rugged or extremely dirty/torn clothes.
   - PERSONALITY: Focus on very common and desi looking character personalities.
 - SAFETY & POLICY COMPLIANCE (CRITICAL): 
@@ -77,6 +80,7 @@ CRITICAL: INDIAN MARKET FOCUS (LOWER & MIDDLE CLASS)
   - FOOD DELIVERY: If the script is related to food delivery, they MUST wear a **red colored t-shirt** with a clear logo that says "**food delivery**".
 - ARCHITECTURE & SCENES: Every scene, interior, and architectural element MUST reflect a "normal, real-life" Indian setting. 
   - REAL-LIFE BASED: Avoid exaggerated poverty or exaggerated luxury. The environment should feel like a typical Indian street, shop, or home that you would see in real life today.
+  - CURRENCY & OBJECTS (CRITICAL): If coins are shown, they MUST prominently feature the "₹" symbol.
   - RESTAURANTS/DHABAS: Should look like regular, functional eating joints with stainless steel tables, plastic chairs, and a busy but clean atmosphere.
 - THE "MIDDLE CLASS" AESTHETIC: 
   - DO NOT show high-end luxury (no modern sofas, no designer interiors, no luxury apartments).
@@ -90,9 +94,9 @@ CRITICAL: INDIAN MARKET FOCUS (LOWER & MIDDLE CLASS)
   - NO SKIPPING: You MUST cover the entire script in sequence from start to finish. DO NOT skip or miss any part of the story while creating the script plan or final prompts.
   - NO ANIMATION (CRITICAL): Never mention "animation", "animated", "cartoon", or any related terms in any B-roll descriptions or prompts. All visuals must be photorealistic cinematic realism.
   - VISUAL FIDELITY: Keep the visuals strictly based on the given scenes in the script.
-  - SCRIPT PLAN AS SOURCE (CRITICAL): The "Script Plan (Editable)" is the final source for all prompt generation. Each segment in the plan (Prompt 1, Prompt 2, etc.) MUST result in exactly ONE prompt.
+  - SCRIPT PLAN AS SOURCE (CRITICAL): The "USER SCRIPT PLAN" provided by the user contains exact editable segments (e.g. dialogueSegments and brollSegments). This is your FINAL, ABSOLUTE source for prompt generation. You MUST map every single item in those arrays 1-to-1 to your output scenes. The presence of 'dialogueSegments' represents PASS 1, and 'brollSegments' represents PASS 2. DO NOT re-segment the script or do your own pass; just map the provided arrays sequentially.
   - START WITH HOOK: The first prompt in any video style MUST be a "Hook" that captures attention immediately.
-  - ONE PROMPT PER PANEL: Each segment in the "Script Plan (Editable)" MUST result in exactly ONE prompt/scene. DO NOT combine multiple script plan panels into a single prompt.
+  - ONE PROMPT PER PANEL: Each item in the "USER SCRIPT PLAN" arrays MUST result in exactly ONE JSON scene constraint. DO NOT combine multiple elements into a single prompt. DO NOT skip any items.
   - THINK LIKE A DIRECTOR: Do not just visualize the literal words. Analyze the SUBTEXT, EMOTIONAL DEPTH, and SOCIAL CONTEXT of the script.
   - SCRIPT UNDERSTANDING: You MUST understand the core message, the characters' motivations, and the setting. If the script is about a midnight conversation, the visuals MUST be dark and moody. If it's about a struggle, the visuals MUST reflect that.
   - Every visual choice (lighting, camera angle, background) must serve the story being told in the script.
@@ -104,12 +108,17 @@ CRITICAL: INDIAN MARKET FOCUS (LOWER & MIDDLE CLASS)
 - STYLE: If "Raw Android Shot (Amateur)" is selected, the prompt must specify handheld android mobile camera physics, natural/ambient lighting, and a spontaneous, unpolished look. Emphasize a realistic, slightly low-res, raw android photography aesthetic—avoid over-sharpening or "iPhone-like" clarity.
 - VIDEO STYLES:
   - "Veo 3.1 JSON":
+    - SCRIPT PLAN MAPPING (CRITICAL): The provided "USER SCRIPT PLAN" contains exact segments. You MUST map every segment given in the user JSON EXACTLY into your output JSON scenes sequentially. Do not create new or skipped segments outside of what is provided.
     - INITIAL SEGMENTS (MANDATORY):
       1. Segment 0: Master Character Moodboard. Provide high-detail portraits of ALL main characters in the story within this single segment. 
          - FORMAT: Use a grid layout (e.g., 2x2 for one character, 4x2 for two characters).
          - AESTHETIC (CRITICAL): For these character portraits, use a **flat white background** and **professional studio lighting**. This is to ensure the AI gets a perfectly clear view of the face and features for consistent recognition.
          - SHOTS: For each character, include a straight face (close-up), side face (profile), and mid shot. Keep faces BIG and CLEARLY VISIBLE.
-      2. Background Moodboard: Provide 4 to 6 distinct, clear shots of the specific environments/locations required by the script.
+         - EXCEPTION FOR AUTHORITATIVE SPEAKER: If the video style is "Veo 3.1 JSON Authoritative Speaker", ignore the standard environment moodboard rules. Instead, provide exactly TWO setup prompts for the environment:
+           (A) Place Prompt: Focus on the center point where the authoritative character will sit/stand. Target the camera to orbit around and show 4 different angle points of that exact spot in a 4-panel grid.
+           (B) Bird's Eye View Prompt: A top-down 1-panel view of the entire scene showing the full layout (who is sitting where, where the speaker is vs the listeners).
+      2. Background Moodboard: Provide exactly 6 distinct, clear shots of the specific environments/locations required by the script arranged in a 2x3 grid format. (See Authoritative Speaker Exception above for environment rules).
+         - GPS COORDINATES RULE (CRITICAL): If the story is set in a specific location or city in India (e.g., Mumbai, Delhi, a specific village), you MUST include the exact or approximate GPS coordinates for that location in the description of EVERY background shot in the moodboard.
       3. Overall Direction: This segment MUST contain the "Overall Direction" block ONLY. This is given just once to set the global style.
          - **OVERALL DIRECTION TEMPLATE**:
            Overall Direction
@@ -132,8 +141,12 @@ CRITICAL: INDIAN MARKET FOCUS (LOWER & MIDDLE CLASS)
         - Example: If Scene 1 ends with "...सादे कागज पर कंज्यूमर कोर्ट की कंप्लेंट", Scene 2 should start from "उसने बस एक सादे कागज पर कंज्यूमर कोर्ट की कंप्लेंट लिख कर सेठ को थमा दी...".
     - DIALOGUE SHOTS (CRITICAL): Whenever a character is speaking dialogue, the shot MUST be a Close-Up (CU) or Medium Close-Up (MCU). The face must be clearly visible for lip-syncing (front face or slight side angle). STRICTLY NO full-body shots during dialogue.
     - ACTION DURING DIALOGUE: Keep movements simple and minimal. Use multi-shots for pacing, but actions should be small and at normal speed. Just a hint of action is enough; do not overcomplicate the movement while they speak.
+    - NO DRINKING/SIPPING DURING DIALOGUE (CRITICAL): There MUST NOT be any action of drinking or sipping (e.g., sipping tea/coffee, drinking water) in any video style while a character is speaking. If a character is described with a cup/glass, they must simply HOLD it the entire time. You may only include drinking or sipping actions in the B-roll prompts where no dialogue is spoken.
+    - HOLDING OBJECTS (CRITICAL): Whenever a character is holding something in their hand (e.g., a cup, phone, tool), you MUST explicitly include the phrase "character hold [object] entire time from start to end." in the action description for visual stability.
     - EYE CONTACT (CRITICAL): When a character speaks directly to the audience, they MUST maintain direct eye contact with the camera. 
       - CONVERSATION EXCEPTION (CRITICAL): If the character is talking to someone else, they MUST look at that person and NOT at the camera.
+    - NEGATIVE PROMPTS (CRITICAL): You MUST include the full negative_prompt block in the JSON output for EVERY segment (except Cast and Background Moodboard).
+      - For "Movie" and "Authoritative Speaker" styles, you MUST append "no looking at camera, no staring at lens, no eye contact with camera, no smiling at camera" to the standard negative prompt list.
     - SCENE LIMIT (CRITICAL): For "Veo 3.1 JSON" and "Veo 3.1 JSON Storytelling", each prompt MUST contain exactly ONE scene in the 'scenes' array. DO NOT combine multiple scenes, dialogue lines, or B-rolls into a single prompt. Every prompt must be a single, focused scene.
       - SCENE STRUCTURE (CRITICAL): For these styles, the prompts should alternate or be sequenced such that dialogue prompts show the narrator speaking to the camera, and B-roll prompts show the cinematic action. DO NOT put both in the same JSON prompt.
       - You MUST include precise timeline details for the single scene (e.g., "0s-6s: Character A speaks to camera").
@@ -147,24 +160,29 @@ CRITICAL: INDIAN MARKET FOCUS (LOWER & MIDDLE CLASS)
 
   - "Veo 3.1 JSON Storytelling":
     - Inherits ALL rules from "Veo 3.1 JSON".
+    - BG REFERENCE & COORDINATES (CRITICAL): When referencing a background from the Background Moodboard in any prompt (e.g., "Set in Background 4"), you MUST also explicitly write the exact GPS coordinates that were defined for that background alongside the background number in every single prompt (both UGC and B-roll).
     - NARRATOR LOGIC (CRITICAL): 
       - If the script is first-person ("I did this", "Mene ye kiya"), the main character IS the narrator. 
       - If the script is third-person (telling someone else's story), create a separate narrator character who tells the story.
     - UGC CHARACTER LOCATION: For UGC scenes, the character should be mostly OUTSIDE in natural environments.
-    - LIVE NATURAL MOOD: Include a few background people in the scenes to create a "live natural mood". They should be doing basic work, walking, or sitting, but MUST NOT be the focus and MUST NOT disturb the main character.
-    - BASIC ACTIVITIES: In the starting 2 prompts (and throughout as appropriate), the character should perform basic activities based on the script (e.g., walking slowly, sipping coffee, scrolling phone, fixing hair, holding a product).
-    - ENVIRONMENT LOGIC: The environment must be logical for the activity (e.g., a sewing machine can be inside a house or outside if it fits the story). If indoors, maintain the "live natural mood" with background characters doing quiet, non-disturbing work.
-    - SCRIPT DOUBLE PASS (CRITICAL): You MUST cover the entire script TWICE in the scenes array.
-    - PASS 1 (UGC STYLE): The first set of scenes covers the entire script with the character speaking directly to the camera in various backgrounds (like a UGC content creator). Follow standard dialogue rules.
-    - PASS 2 (CINEMATIC B-ROLL): After the UGC scenes, provide a COMPLETE start-to-end visual narrative using B-roll scenes (at least 7-8 scenes). These scenes MUST visually narrate the entire script from beginning to end without any dialogue, creating a full cinematic story. These must be clean, movie-like storytelling with actions and visuals ONLY. STRICTLY NO dialogue speaking in these B-roll scenes. The character MUST NOT open their mouth or speak; they should only act out the scene. Limit to a MAXIMUM of 2 scenes per prompt in this pass.
+    - ALIVE BACKGROUND & LIVE NATURAL MOOD (CRITICAL): The background MUST feel alive and dynamic, never like a still image. You MUST explicitly include background characters filling the scene to make it real (e.g., people walking by, doing some work, or chores in the background). There should ALWAYS be some kind of basic background activity occurring, but it MUST NOT be the focus and MUST NOT disturb the main character.
+    - BASIC ACTIVITIES: In the starting 2 prompts (and throughout as appropriate), the character should perform basic activities based on the script (e.g., walking slowly, scrolling phone, fixing hair, holding a product).
+    - ENVIRONMENT LOGIC: The environment must be logical for the activity (e.g., a sewing machine can be inside a house or outside if it fits the story). If indoors or outdoors, maintain the "alive background" with background characters doing quiet, non-disturbing work/chores.
+    - SCRIPT DOUBLE PASS (CRITICAL): The provided "USER SCRIPT PLAN" contains two arrays ('dialogueSegments' and 'brollSegments'). You MUST map the provided 'dialogueSegments' array EXACTLY to PASS 1, and the 'brollSegments' array EXACTLY to PASS 2.
+    - PASS 1 (UGC STYLE): Translate every exact segment from 'dialogueSegments' into a scene depicting the character speaking directly to the camera in various backgrounds.
+    - PASS 2 (CINEMATIC B-ROLL): Translate every exact segment from 'brollSegments' into a scene depicting clean, movie-like storytelling without dialogue.
+      - VISUALLY DRIVEN B-ROLL (CRITICAL): These must be clean, movie-like storytelling with actions and visuals ONLY. If the script discusses law, show close-ups of legal documents/files. If it discusses finance, show coins with "₹" symbols, or 1-2 infographic visuals (basic animation allowed) to explain complex points.
+      - B-ROLL PROMPT FORMAT: For every B-roll scene, you MUST provide both a "first_frame_image_prompt" (high-detail static scene description specifically optimized for generating the first frame as a standalone image, strongly enforcing no split screens and no text) and a "first_frame_visual" (description of the starting frame for the video generation). For infographics, use the specific "infographic visual image prompt" along with the animation description. 
+    - STRICTLY NO dialogue speaking in these B-roll scenes. The character MUST NOT open their mouth or speak; they should only act out the scene. Limit to a MAXIMUM of 2 scenes per prompt in this pass.
 
   - "Veo 3.1 JSON Conversation":
     - Inherits ALL rules from "Veo 3.1 JSON".
-    - SCRIPT DOUBLE PASS (CRITICAL): Like the Storytelling style, you MUST cover the entire script TWICE in the scenes array.
-    - PASS 1 (CONVERSATION STYLE): The first set of scenes covers the entire script with the back-and-forth conversation between two characters. Follow standard dialogue and conversation rules.
-    - PASS 2 (CINEMATIC B-ROLL): After the conversation scenes, provide a COMPLETE start-to-end visual narrative using B-roll scenes (at least 7-8 scenes). These scenes MUST visually narrate the entire script from beginning to end without any dialogue, creating a full cinematic story. These must be clean, movie-like storytelling with actions and visuals ONLY. STRICTLY NO dialogue speaking in these B-roll scenes. The characters MUST NOT open their mouth or speak; they should only act out the scene. Limit to a MAXIMUM of 2 scenes per prompt in this pass.
+    - SCRIPT DOUBLE PASS (CRITICAL): The provided "USER SCRIPT PLAN" contains two arrays ('dialogueSegments' and 'brollSegments'). You MUST map the provided 'dialogueSegments' array EXACTLY to PASS 1, and the 'brollSegments' array EXACTLY to PASS 2.
+    - PASS 1 (CONVERSATION STYLE): Translate every exact segment from 'dialogueSegments' into a back-and-forth conversation scene.
+    - PASS 2 (CINEMATIC B-ROLL): Translate every exact segment from 'brollSegments' into a clean, movie-like storytelling scene without dialogue.
     - STRICT SCRIPT ADHERENCE (CRITICAL): DO NOT add any dialogues on your own. Stick ONLY to the provided script.
     - STRICT 2-CHARACTER FORMAT: Use this for back-and-forth dialogue between two characters.
+    - ALIVE BACKGROUND (CRITICAL): The background MUST feel alive and dynamic, never like a still image. You MUST explicitly include background characters filling the scene to make it real (e.g., people walking by, doing some work, or chores in the background). There should ALWAYS be some kind of basic background activity occurring, but it MUST NOT take focus from the main characters.
     - SINGLE COMBINED MOODBOARD: Instead of two separate character moodboards, Segment 0 MUST be a single combined moodboard. Provide exactly 4 high-detail close-up shots in a 2x2 grid: 2 shots of Character 1 (front face, mid closeup) and 2 shots of Character 2 (front face, mid closeup).
     - DIALOGUE LIMIT & COMBINED SCENES: MAXIMUM of two dialogues per scene (one from Character 1, one from Character 2). You MUST keep two people's conversation in one single scene prompt (as two shots within the same JSON prompt). Both Character 1 and Character 2's dialogues should be included in the single prompt. If a character has no dialogue in a specific part of the script, DO NOT force them to speak.
     - DIALOGUE PUNCTUATION (CRITICAL): Remove ALL punctuation (full stops, question marks, exclamation marks, etc.) from the dialogue text and replace them exclusively with commas (,).
@@ -176,19 +194,59 @@ CRITICAL: INDIAN MARKET FOCUS (LOWER & MIDDLE CLASS)
   - "Veo 3.1 JSON Movie":
     - Inherits ALL rules from "Veo 3.1 JSON".
     - CINEMATIC STORYTELLING: Unlike UGC storytelling, this is a cinematic movie scene. Characters interact with each other and their environment.
+    - SCENE CONSISTENCY (CRITICAL): If a "SCENE" setting is provided in the script, the ENTIRE video script must be based on that exact scene. Do NOT create multiple different locations if characters are talking at the same place.
     - NO CAMERA EYE CONTACT (CRITICAL): Characters MUST NEVER look directly into the camera. They must look at each other or their surroundings.
     - SHOT COMPOSITION & CUTTING (CRITICAL): 
-      - Show ONLY Mid Close-Up (MCU) shots of characters while they are speaking.
+      - If there are two characters speaking, create Mid Close-Up (MCU) shots ONLY of the character who is currently talking.
+      - If there are two characters doing some act together, frame it like a high-quality advertisement scene, but keep it raw and captured in our specified tonality.
+      - If the story provides a specific scene, create all prompts like an advertisement but raw captured in our tonality.
       - Dialogue MUST start AFTER a scene change. When there are two characters, cut to the Mid Close-Up of the first character, then they speak. 
       - When the first character's dialogue finishes, immediately cut to the Mid Close-Up of the other character for their reaction or dialogue.
+    - SINGLE SPEAKER CONTINUITY (CRITICAL): If there are 2 or 3 characters but only ONE is talking throughout: Keep the first scene like acting. From the second prompt onwards, keep the SAME character and the SAME scene, but use a different angle (e.g., zoomed out shot, close-up shot). The talking character's scene remains the same entire time with different angles.
+    - FRIENDS AGE RULE: If the story is about two friends, they MUST be described as approximately 25 years old, unless the script explicitly states they are students or a different age.
     - SILENT LISTENER RULE (CRITICAL): If there are two or more people in a scene and only one is speaking, you MUST explicitly state in the prompt that the other character is "listening silently without speaking a single word, just there for presence".
-    - ALIVE BACKGROUND (CRITICAL): The background MUST feel alive and dynamic, not like a still image. Explicitly include background activity (e.g., leaves moving, people walking in the distance, subtle traffic, flickering light) to ensure the scene feels active.
-    - SEQUENTIAL MOVIE FLOW: The scenes must flow logically like a movie sequence. For example, a character enters, an action happens, they sit together, and then the dialogue begins.
-    - SCRIPT DOUBLE PASS (CRITICAL): You MUST cover the entire script TWICE in the scenes array.
-    - PASS 1 (MOVIE DIALOGUE STYLE): The first set of scenes covers the entire script as a cinematic movie. Follow standard dialogue rules but keep the interactions between characters/environment.
-    - PASS 2 (CINEMATIC B-ROLL): After the movie dialogue scenes, provide a COMPLETE start-to-end visual narrative using B-roll scenes (at least 7-8 scenes). These must be clean, movie-like storytelling with actions and visuals ONLY. STRICTLY NO dialogue speaking in these B-roll scenes. Limit to a MAXIMUM of 2 scenes per prompt in this pass.
+    - NEGATIVE PROMPTS (CRITICAL): You MUST include the full negative_prompt block in the JSON output for EVERY segment (except Cast and Background Moodboard). 
+      - For "Movie" and "Authoritative Speaker" styles, explicitly add: "no looking at camera, no staring at lens, no eye contact with camera, no smiling at camera" to the standard list.
+    - SCRIPT DOUBLE PASS (CRITICAL): The provided "USER SCRIPT PLAN" contains two arrays ('dialogueSegments' and 'brollSegments'). You MUST map the provided 'dialogueSegments' array EXACTLY to PASS 1, and the 'brollSegments' array EXACTLY to PASS 2.
+    - PASS 1 (MOVIE DIALOGUE STYLE): Translate every exact segment from 'dialogueSegments' into a cinematic movie scene. Follow standard dialogue rules but keep the interactions between characters/environment.
+    - PASS 2 (CINEMATIC B-ROLL): Translate every exact segment from 'brollSegments' into a clean, movie-like storytelling scene without dialogue.
+      - VISUALLY DRIVEN B-ROLL (CRITICAL): If the script discusses law, show close-ups of legal documents/files. If it discusses finance, show coins with "₹" symbols, or 1-2 infographic visuals (basic animation allowed) to explain complex points.
+      - B-ROLL PROMPT FORMAT: For every B-roll scene, you MUST provide both a "first_frame_image_prompt" (high-detail static scene description specifically optimized for generating the first frame as a standalone image, strongly enforcing no split screens and no text) and a "first_frame_visual" (description of the starting frame for the video generation). For infographics, use the specific "infographic visual image prompt" along with the animation description. 
+    - STRICTLY NO dialogue speaking in these B-roll scenes. Limit to a MAXIMUM of 2 scenes per prompt in this pass.
 
-  - VEO 3.1 JSON TEMPLATE (USED FOR ALL 4 STYLES):
+  - "Veo 3.1 JSON Authoritative Speaker":
+    - Inherits ALL rules from "Veo 3.1 JSON".
+    - CONCEPT: The main character is an authority figure (e.g., lawyer, teacher, police officer, or astrologer baba) stationed at ONE fixed location, addressing another party (single person, couple, family, or crowd). The speaker NEVER looks into the camera lens, only at their in-scene audience.
+    - ASTROLOGER OUTFIT RULE (CRITICAL): If the character is an astrologer baba, you MUST explicitly describe them wearing an "orange kurta style outfit with a mala in his neck".
+    - FIXED LOCATION & ORBITING CAMERA (CRITICAL): The character stays in ONE single location (sitting or standing) for all dialogue scenes. Do NOT change the location. Instead, change the CAMERA ANGLE for different dialogue prompts. The environment remains identical, but the camera orbits the character so the background behind them changes directionally according to the angle. The character does NOT rotate; the camera orbits them.
+    - SETUP PROMPTS (CRITICAL): You MUST build the initial segments with these exactly:
+      1. CAST PROMPT (Segment 0): The standard character moodboard (white background, grid of close-up, side profile, and mid shots).
+      2. PLACE PROMPT (Segment 1): The specific single location/environment focusing strictly on where the speaker will sit. Orbit around to display 4 different angle points of that spot in a grid.
+      3. BIRD'S EYE VIEW PROMPT (Segment 2): A top-down view of the entire scene, showing who is sitting where (the speaker and the listeners) and the comprehensive layout.
+      4. OVERALL DIRECTION (Segment 3): The standard Overall Direction block.
+    - SCRIPT DOUBLE PASS (CRITICAL): The provided "USER SCRIPT PLAN" contains two arrays ('dialogueSegments' and 'brollSegments'). You MUST map the provided 'dialogueSegments' array EXACTLY to PASS 1, and the 'brollSegments' array EXACTLY to PASS 2.
+    - NO SELFIE / NO UGC (CRITICAL): There MUST NOT be any selfie shots, vlogging style or UGC framing. The speaker must NEVER look directly into the camera lens. They interact only with their in-scene listeners in the established environment.
+    - NEGATIVE PROMPTS (CRITICAL): You MUST include the full negative_prompt block in the JSON output for EVERY segment (except Cast and Background Moodboard). 
+      - Since this is an Authoritative Speaker style, explicitly add: "no looking at camera, no staring at lens, no eye contact with camera, no smiling at camera" to the standard list.
+    - PASS 1 (AUTHORITATIVE DIALOGUE STYLE & CAMERA ORBITS): Translate every exact segment from 'dialogueSegments' into dialogue scenes. Keep the exact same environment and spatial layout established in the Bird's Eye View for EVERY prompt. Vary the camera angles continuously between these 4 orbital points:
+      (A) Mid Close-Up (MCU) of the speaker talking to the audience.
+      (B) Side angle back shot: Camera positioned from behind/side of the speaker, focusing on the audience (listening silently) while the speaker talks.
+      (C) Orbit 90 degrees to the left, capturing a side shot of the speaker addressing the listeners.
+      (D) Orbit 90 degrees to the right, capturing the opposite side shot of the speaker addressing the listeners.
+      Rotate through these angles for the dialogue prompts. The underlying scene/location MUST remain strictly the exact same.
+    - PASS 2 (CINEMATIC B-ROLL): Translate every exact segment from 'brollSegments' into a clean, cinematic action scene with NO dialogue speaking.
+      - VISUALLY DRIVEN B-ROLL (CRITICAL): If the script discusses law, show close-ups of legal documents/files. If it discusses finance, show coins with "₹" symbols, or 1-2 infographic visuals (basic animation allowed) to explain complex points.
+      - B-ROLL PROMPT FORMAT: For every B-roll scene, you MUST provide both a "first_frame_image_prompt" (high-detail static scene description specifically optimized for generating the first frame as a standalone image, strongly enforcing no split screens and no text) and a "first_frame_visual" (description of the starting frame for the video generation). For infographics, use the specific "infographic visual image prompt" along with the animation description. 
+
+  - "Veo 3.1 JSON Only B-roll":
+    - Inherits ALL rules from "Veo 3.1 JSON".
+    - SCRIPT SINGLE PASS (CRITICAL): The provided "USER SCRIPT PLAN" contains the exact 'brollSegments' array. You MUST map every segment from this array EXACTLY into JSON B-roll scenes. Do not create new or skipped segments outside of what is provided.
+    - NO DIALOGUE / NO SPEAKING (CRITICAL): There MUST be NO dialogue in any scene. The characters MUST NOT open their mouth or speak; they should only act out the scenes visually.
+    - VISUALLY DRIVEN B-ROLL (CRITICAL): If the script discusses law, show close-ups of legal documents/files. If it discusses finance, show coins with "₹" symbols, or 1-2 infographic visuals (basic animation allowed) to explain complex points.
+    - B-ROLL PROMPT FORMAT: For every B-roll scene, you MUST provide both a "first_frame_image_prompt" (high-detail static scene description specifically optimized for generating the first frame as a standalone image, strongly enforcing no split screens and no text) and a "first_frame_visual" (description of the starting frame for the video generation). For infographics, use the specific "infographic visual image prompt" along with the animation description.
+    - SCENE LIMIT: Limit to a MAXIMUM of 2 scenes per prompt in this pass.
+
+  - VEO 3.1 JSON TEMPLATE (USED FOR ALL 5 STYLES):
     {
       "version": "veo-3.1",
       "output": {
@@ -216,7 +274,9 @@ CRITICAL: INDIAN MARKET FOCUS (LOWER & MIDDLE CLASS)
             "type": "[Shot type, e.g., Medium over-the-shoulder shot]",
             "camera_movement": "[Camera movement]"
           },
-          "action": "[Action details. MUST append 'wearing same cloth'. Mention direct eye contact if speaking to camera. MUST append exactly: 'character speaks their dialogue in quickly withing 4 second without extra pause or slow delivery, and after completing the dialogue he just stares at screen']",
+          "first_frame_image_prompt": "[High-detail static scene description specifically designed to generate the first frame as an image. CRITICAL: You MUST explicitly append 'single frame only, perfectly textless, no split screen, no text or overlays' to this prompt (unless it is a specific infographic) so the user gets a clean standalone image.]",
+          "first_frame_visual": "[Description of the starting frame for video generation. MUST connect logically to first_frame_image_prompt.]",
+          "action": "[Action details. MUST append 'wearing same cloth'. If character is holding an object, MUST add 'character hold [object] entire time from start to end.'. Mention direct eye contact ONLY if speaking to camera.]",
           "audio": {
             "dialogue": "[[Speaker Name]]: '[Hindi script translation]'",
             "ambient": "[Ambient sound]",
@@ -230,7 +290,9 @@ CRITICAL: INDIAN MARKET FOCUS (LOWER & MIDDLE CLASS)
             "type": "[Shot type]",
             "camera_movement": "[Camera movement]"
           },
-          "action": "[Action details. MUST append 'wearing same cloth'. Mention direct eye contact if speaking to camera. MUST append exactly: 'character speaks their dialogue in quickly withing 4 second without extra pause or slow delivery, and after completing the dialogue he just stares at screen']",
+          "first_frame_image_prompt": "[High-detail static scene description specifically designed to generate the first frame as an image. CRITICAL: You MUST explicitly append 'single frame only, perfectly textless, no split screen, no text or overlays'.]",
+          "first_frame_visual": "[Description of the starting frame for video generation.]",
+          "action": "[Action details. MUST append 'wearing same cloth'. If character is holding an object, MUST add 'character hold [object] entire time from start to end.'. Mention direct eye contact ONLY if speaking to camera.]",
           "audio": {
             "dialogue": "[[Speaker Name]]: '[Hindi script translation]'",
             "ambient": "[Ambient sound]",
@@ -238,7 +300,7 @@ CRITICAL: INDIAN MARKET FOCUS (LOWER & MIDDLE CLASS)
           }
         }
       ],
-      "negative_prompt": "no third hand, no things disappearing or evaporating, no two mobiles, no object disappearing, no video anomaly, no glitches, no mobile screen, phone showcase, text overlay, subtitles, on-screen text, smooth camera, studio setup, bright clean room, no model like woman, no jewelry focus,no urban setting, no CGI,no 3D render,no cartoon,no anime, plastic skin, wax-like texture, uncanny valley, jittery movement, sliding feet, teleporting limbs, extra fingers, morphing background, over-saturated colors, bloom effect, motion blur artifacts, robotic movement, frame skipping, floating objects, "
+      "negative_prompt": "no iPhone, no third hand, no things disappearing or evaporating, no two mobiles, no object disappearing, no video anomaly, no glitches, no mobile screen, phone showcase, text overlay, subtitles, on-screen text, smooth camera, studio setup, bright clean room, no model like woman, no jewelry focus,no urban setting, no CGI,no 3D render,no cartoon,no anime, plastic skin, wax-like texture, uncanny valley, jittery movement, sliding feet, teleporting limbs, extra fingers, morphing background, over-saturated colors, bloom effect, motion blur artifacts, robotic movement, frame skipping, floating objects. [For Movie/Authoritative styles, ALSO append: 'no looking at camera, no staring at lens, no eye contact with camera, no smiling at camera']."
     }
   - The 4 INTRO SHOTS rule is BYPASSED for this style.
   - CRITICAL: NO WINKING, NO SELFIE SHOTS. Ensure no character is winking and NO shot is a selfie in any segment.
@@ -249,6 +311,11 @@ CRITICAL: VISUAL CONTINUITY & SINGLE VIDEO FLOW
 - Establish a consistent visual language, recurring motifs, matching lighting setups, and logical transitions between cuts.
 - Ensure the sequence feels like a continuous storyboard/moodboard flowing from one scene to the next, as if filmed in the same real-life location.
 - ENVIRONMENT DEFINITION: In all styles, the environment (Modest Indian setting) MUST be script-driven. If the script is outdoors, the environment is outdoors. If the script is in a shop, the environment is a shop. DO NOT default to a home setting.
+
+CRITICAL: ABSOLUTE MANDATE FOR NEGATIVE PROMPTS IN JSON
+For every segment using a JSON style, the root of the JSON object MUST contain a key named "negative_prompt". This key MUST contain the following text: "no iPhone, no third hand, no things disappearing or evaporating, no two mobiles, no object disappearing, no video anomaly, no glitches, no mobile screen, phone showcase, text overlay, subtitles, on-screen text, smooth camera, studio setup, bright clean room, no model like woman, no jewelry focus,no urban setting, no CGI,no 3D render,no cartoon,no anime, plastic skin, wax-like texture, uncanny valley, jittery movement, sliding feet, teleporting limbs, extra fingers, morphing background, over-saturated colors, bloom effect, motion blur artifacts, robotic movement, frame skipping, floating objects."
+- For "Movie" and "Authoritative Speaker" styles, you MUST ALSO ADD: ", no looking at camera, no staring at lens, no eye contact with camera, no smiling at camera" to the end of that string.
+- This is MANDATORY for every single prompt. DO NOT skip it.
 
 PHASE 0: THE MASTER MOODBOARD COLLAGE (MANDATORY)
 - You MUST start with "Segment 0: Master Moodboard".
@@ -292,7 +359,7 @@ Be hyper-specific about:
 6. LIGHTING & COLOR: Define the setup and color theory (keep consistent across the moodboard). For UGC, use natural, uncorrected lighting. For cinematic styles, ensure the lighting matches the TIME-OF-DAY logic established in the script analysis (e.g., if it's 2 AM, specify "pitch black environment with only a single dim blue moonlight source" or "dark room with orange street-light spill").
 7. CAMERA & LENS PHYSICS: Specify camera, lens, and aperture. For Android/UGC style, use android mobile lens specs (e.g., 26mm, f/1.8) and mention handheld jitter, selfie-stick angles, and the character looking directly into the lens. Emphasize a "normal" android phone look—not too sharp, realistic, with a raw photography feel. For "Storytelling Narrative" and "B-Roll Focus" (after the intro), use cinematic lens specs (e.g., 35mm, 50mm, 85mm) and ensure the character is NOT looking into the lens.
 8. TEXTURE & PBR: Micro-details and materials.
-9. NEGATIVE CONSTRAINTS: For all segments EXCEPT Segment 0, you MUST append: "--no split screen, no collage, no grid, no multiple views, no multiple panels, no multiple frames, single frame only, no indoor plants, no decorative vases, no modern art, no luxury furniture, no designer sofas, no broken walls, no extreme poverty, no plastic skin, glossy, overly smooth, artificial lighting, 3D render, cartoonish, arbitrary placement, centered framing, stock photography vibe, no winking, no winks, over-sharpened, high-end DSLR look, professional studio lighting, CGI, 3D render, cartoon, anime, wax-like texture, uncanny valley, jittery movement, sliding feet, teleporting limbs, extra fingers, morphing background, over-saturated colors, bloom effect, motion blur artifacts, robotic movement, frame skipping, floating objects. MUST follow real life physics."
+9. NEGATIVE CONSTRAINTS: For all segments EXCEPT Segment 0, you MUST append: "--no iPhone, no split screen, no collage, no grid, no multiple views, no multiple panels, no multiple frames, single frame only, no indoor plants, no decorative vases, no modern art, no luxury furniture, no designer sofas, no broken walls, no extreme poverty, no plastic skin, glossy, overly smooth, artificial lighting, 3D render, cartoonish, arbitrary placement, centered framing, stock photography vibe, no winking, no winks, over-sharpened, high-end DSLR look, professional studio lighting, CGI, 3D render, cartoon, anime, wax-like texture, uncanny valley, jittery movement, sliding feet, teleporting limbs, extra fingers, morphing background, over-saturated colors, bloom effect, motion blur artifacts, robotic movement, frame skipping, floating objects. MUST follow real life physics."
 10. FINAL CONSISTENCY CHECK: At the absolute end of EVERY prompt (after the negative constraints), you MUST append the exact sentence: "Make sure to use same exact character as given in reference"
 
 CRITICAL: OUTPUT FORMAT
@@ -469,22 +536,25 @@ export default function App() {
         
         For "${videoStyle}", you MUST provide TWO separate lists:
         1. "dialogueSegments": 
+           - For "Only B-roll": Leave this list COMPLETELY EMPTY [].
            - For "Storytelling": A list of segments where the character speaks to the camera (UGC style). 
              - If first-person, the main character is the speaker. 
              - If third-person, a separate narrator is the speaker.
-             - Include basic activities for the speaker (e.g., walking, sipping tea, scrolling phone) that fit the script.
+             - Include basic activities for the speaker (e.g., walking, scrolling phone) that fit the script.
            - For "Conversation": A list of segments where characters talk to EACH OTHER (NOT to the camera).
            - For "Movie": A list of segments formatted as cinematic movie scenes. Characters interact with each other or the environment, NOT the camera (unless specified). If one character speaks and another is present, explicitly note the other is "listening silently".
+           - For "Authoritative Speaker": A list of segments formatted for an authoritative speaker at a fixed location talking to a listening party, changing only the camera angles around them.
            - CRITICAL: In the "script" field, you MUST include the character's name followed by their dialogue in Hindi (e.g., "Rajesh: नमस्ते, कैसे हो?").
            - CRITICAL: These segments MUST cover the entire script sequentially without skipping any lines. Every single sentence of the script MUST be included in the "script" field of these segments in the exact order they appear.
            - Each segment should have a "title" like "Prompt 1", "Prompt 2", etc.
         2. "brollSegments": A list of cinematic B-roll segments that visually narrate the story. These should be "small cuts" of activities or actions. Provide only a short "broll" description.
+           - For "Only B-roll": Provide a COMPLETE start-to-end visual narrative using ONLY B-roll segments (at least 10-12 segments). These MUST cover the entire script sequentially without any skipping.
            - CRITICAL: These segments MUST visually narrate the entire script from start to finish in sequence. Every part of the story MUST have a corresponding B-roll segment.
            - CRITICAL: Never mention "animation" or "animated" in the B-roll descriptions.
            - CRITICAL: DO NOT include B-rolls showing "downloading master app" or "1 rs trial".
            - Each segment should have a "title" like "B-Roll Prompt 1", "B-Roll Prompt 2", etc.
         
-        CRITICAL: For "${videoStyle}", you MUST generate a high volume of B-roll segments (at least 7-8 segments) to ensure a rich visual narrative that covers EVERY SINGLE LINE of the script from start to finish in sequence. DO NOT skip any part of the story.
+        CRITICAL: For "${videoStyle}", if it is "Only B-roll", you MUST generate a high volume of ONLY B-roll segments (at least 10-12 segments). For any other style, you MUST generate both "dialogueSegments" and "brollSegments" (at least 7-8 B-roll segments) to ensure a rich visual narrative that covers EVERY SINGLE LINE of the script from start to finish in sequence. DO NOT skip any part of the story.
         
         CRITICAL: Never mention "animation" or "animated" in any part of the output.
         
@@ -577,7 +647,7 @@ export default function App() {
         : JSON.stringify({ dialogueSegments: editableDialogueSegments, brollSegments: editableBrollSegments });
 
       const parts: any[] = [
-        { text: `USER SCRIPT PLAN: ${plan}\nVIDEO STYLE: ${videoStyle}${imageText ? `\nREQUIRED TEXT CONTENT (USE EXACTLY AS IS, DO NOT ALTER): "${imageText}"` : ''}\n\nBased on the provided script segments and B-roll ideas, generate the final hyper-detailed architectural blueprints for Recraft V4. CRITICAL: The "USER SCRIPT PLAN" provided above is your ONLY source for the story. You MUST cover EVERY SINGLE segment and B-roll idea provided in the plan in the exact sequence. DO NOT skip or combine any segments. The final prompts MUST be built strictly from the dialogue/script content in these boxes, keeping the storyline consistent. CRITICAL: DO NOT REFORM OR REPHRASE DIALOGUES. You must use the exact lines, words, and sentences from the script plan. Never add or remove any words.` }
+        { text: `USER SCRIPT PLAN: ${plan}\nVIDEO STYLE: ${videoStyle}${imageText ? `\nREQUIRED TEXT CONTENT (USE EXACTLY AS IS, DO NOT ALTER): "${imageText}"` : ''}\n\nBased on the provided USER SCRIPT PLAN, generate the final hyper-detailed structured prompts.\nCRITICAL MAPPING RULE: The "USER SCRIPT PLAN" is your ABSOLUTE structure. \n- You MUST map EVERY single item in "dialogueSegments" to a dialogue scene in the prompt sequentially, and EVERY single item in "brollSegments" to a B-roll scene sequentially. \n- DO NOT generate scenes from the raw script logic—you MUST use these exact edited segments 1-to-1. \n- DO NOT merge, skip, or create new segments. \n- REPHRASING IS STRICTLY FORBIDDEN: You must use the exact edited lines and words from the provided plan.` }
       ];
 
       if (referenceImage) {
@@ -626,7 +696,7 @@ export default function App() {
                     },
                     prompt: {
                       type: Type.STRING,
-                      description: "The final multi-part architectural prompt for Recraft V4 for this specific segment. For 'Ready to Go' style, this MUST be a stringified JSON object following the structure defined in the system instructions."
+                      description: "The final multi-part architectural prompt. For all 'Veo 3.1 JSON' styles, this MUST be a VALID stringified JSON object following the EXACT template defined in the instructions. CRITICAL: You MUST include the full 'negative_prompt' key at the root of this JSON for EVERY segment (except Moodboards). Failure to include the full negative prompt list is a critical failure."
                     }
                   },
                   required: ["timestamp", "scriptText", "visualCue", "prompt"]
@@ -933,41 +1003,43 @@ export default function App() {
                     ) : (
                       <div className="space-y-8">
                         {/* Dialogue Section */}
-                        <div className="space-y-4">
-                          <div className="flex items-center justify-between mb-2">
-                            <h3 className="label mb-0 text-emerald-400">
-                              {videoStyle === "Veo 3.1 JSON Storytelling" ? "Dialogue Segments (UGC)" : videoStyle === "Veo 3.1 JSON Movie" ? "Movie Segments (Cinematic)" : "Dialogue Segments (Conversation)"}
-                            </h3>
-                            <button 
-                              onClick={addDialogueSegment}
-                              className="p-1.5 bg-white/5 hover:bg-white/10 rounded-lg text-white transition-colors"
-                              title="Add Dialogue"
-                            >
-                              <Plus className="w-4 h-4" />
-                            </button>
-                          </div>
-                          <div className="space-y-3 max-h-[250px] overflow-y-auto pr-2 custom-scrollbar">
-                            {editableDialogueSegments.map((seg, idx) => (
-                              <div key={idx} className="p-3 bg-white/5 rounded-xl border border-white/10 relative group">
-                                <div className="flex items-center justify-between mb-2">
-                                  <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">{seg.title || `Prompt ${idx + 1}`}</span>
-                                  <button 
-                                    onClick={() => removeDialogueSegment(idx)}
-                                    className="p-1 bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white rounded-lg transition-all opacity-0 group-hover:opacity-100"
-                                  >
-                                    <X className="w-3 h-3" />
-                                  </button>
+                        {videoStyle !== "Veo 3.1 JSON Only B-roll" && (
+                          <div className="space-y-4">
+                            <div className="flex items-center justify-between mb-2">
+                              <h3 className="label mb-0 text-emerald-400">
+                                {videoStyle === "Veo 3.1 JSON Storytelling" ? "Dialogue Segments (UGC)" : videoStyle === "Veo 3.1 JSON Movie" ? "Movie Segments (Cinematic)" : videoStyle === "Veo 3.1 JSON Authoritative Speaker" ? "Speaker Segments (Fixed Location)" : "Dialogue Segments (Conversation)"}
+                              </h3>
+                              <button 
+                                onClick={addDialogueSegment}
+                                className="p-1.5 bg-white/5 hover:bg-white/10 rounded-lg text-white transition-colors"
+                                title="Add Dialogue"
+                              >
+                                <Plus className="w-4 h-4" />
+                              </button>
+                            </div>
+                            <div className="space-y-3 max-h-[250px] overflow-y-auto pr-2 custom-scrollbar">
+                              {editableDialogueSegments.map((seg, idx) => (
+                                <div key={idx} className="p-3 bg-white/5 rounded-xl border border-white/10 relative group">
+                                  <div className="flex items-center justify-between mb-2">
+                                    <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">{seg.title || `Prompt ${idx + 1}`}</span>
+                                    <button 
+                                      onClick={() => removeDialogueSegment(idx)}
+                                      className="p-1 bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white rounded-lg transition-all opacity-0 group-hover:opacity-100"
+                                    >
+                                      <X className="w-3 h-3" />
+                                    </button>
+                                  </div>
+                                  <textarea 
+                                    className="input-field w-full text-sm min-h-[50px] resize-none"
+                                    placeholder="Enter Hindi script..."
+                                    value={seg.script}
+                                    onChange={(e) => updateDialogueSegment(idx, e.target.value)}
+                                  />
                                 </div>
-                                <textarea 
-                                  className="input-field w-full text-sm min-h-[50px] resize-none"
-                                  placeholder="Enter Hindi script..."
-                                  value={seg.script}
-                                  onChange={(e) => updateDialogueSegment(idx, e.target.value)}
-                                />
-                              </div>
-                            ))}
+                              ))}
+                            </div>
                           </div>
-                        </div>
+                        )}
 
                         {/* B-Roll Section */}
                         <div className="space-y-4">
