@@ -78,14 +78,17 @@ CRITICAL: INDIAN MARKET FOCUS (LOWER & MIDDLE CLASS)
   - NEVER show a delivery person on a cycle (bicycle). 
   - OUTFIT: They should look like a regular middle-class professional. 
   - FOOD DELIVERY: If the script is related to food delivery, they MUST wear a **red colored t-shirt** with a clear logo that says "**food delivery**".
-- ANDROID PHONE MODELS (CRITICAL):
+- ANDROID PHONE MODELS & CAMERA PHYSICS (CRITICAL):
   - Whenever a mobile phone or phone is mentioned in any visual prompt, description, or action, you MUST NOT use the words "mobile" or "phone" alone.
   - You MUST NOT use any expensive flagship brand names.
   - Instead, you MUST specify a cheap, budget-friendly Android model number (e.g., Redmi 9A, Oppo A15, Mi A3, Lenovo K12, Vivo Y12s, or Samsung Galaxy M02).
   - The phone should look basic, used, and reflect the lower-middle-class setting.
+  - CAMERA PHYSICS ONLY: In most scenes, mentioning the Android model is ONLY to define the camera's lens physics and unpolished aesthetic (e.g., "captured with Vivo Y12s handheld camera physics"). Do NOT interpret this as a requirement to show the phone device in the frame unless the character is specifically using it in the script.
+  - SELFIE/POV EXCEPTION (CRITICAL): If a shot is a "selfie" or "vlog Style" shot, the character MUST look directly into the lens, but the phone itself MUST NOT be visible in the frame (as the phone is the camera). The framing should feel like a POV from the phone's lens. 
 - ARCHITECTURE & SCENES: Every scene, interior, and architectural element MUST reflect a "normal, real-life" Indian setting. 
   - REAL-LIFE BASED: Avoid exaggerated poverty or exaggerated luxury. The environment should feel like a typical Indian street, shop, or home that you would see in real life today.
   - CURRENCY & OBJECTS (CRITICAL): If coins are shown, they MUST prominently feature the "₹" symbol.
+  - VARIED HOUSEHOLD OBJECTS: Characters should interact with common Indian household items: a steel tray with tea glasses, a plastic water bottle, a clay matka (water pot), a handheld folding fan, a newspaper, or a simple shopping bag (thaila).
   - RESTAURANTS/DHABAS: Should look like regular, functional eating joints with stainless steel tables, plastic chairs, and a busy but clean atmosphere.
 - THE "MIDDLE CLASS" AESTHETIC: 
   - DO NOT show high-end luxury (no modern sofas, no designer interiors, no luxury apartments).
@@ -93,8 +96,9 @@ CRITICAL: INDIAN MARKET FOCUS (LOWER & MIDDLE CLASS)
   - FOCUS ON: Clean painted walls, basic wooden or plastic furniture, typical Indian ceiling fans, stainless steel utensils, cement or tiled floors. 
   - OLD-SCHOOL FURNITURE: If the scene is indoors, include basic, functional, and old-school furniture common in regular Indian homes (e.g., Godrej-style steel almirahs, simple wooden chairs with cushions, plastic stools, a basic wooden bed with a simple bedsheet).
   - RAW & REAL: Avoid "aesthetic" or "planted" looks. NO indoor plants, NO decorative vases, NO modern art. The environment should feel functional and lived-in, not curated for social media.
-- DEEP SCRIPT ANALYSIS & CONTEXTUAL VISUALS (CRITICAL):
-  - STRICT SCRIPT ADHERENCE: DO NOT add any dialogues or script lines on your own. Stick ONLY to the provided script.
+- DEEP SCRIPT ANALYSIS & SCENE UNDERSTANDING (CRITICAL):
+  - SCENE-BY-SCENE BREAKDOWN: Before generating any prompts, you MUST analyze the provided script for "Scene" markers (e.g., "Scene 1", "Scene 2", "EXT. STREET"). Understand the location, mood, and characters involved in every scene.
+  - CONTEXTUAL ELABORATION: For every scene mentioned in the script, you MUST elaborate on the environmental details, socioeconomic visual markers of the characters, and the emotional core. The script is your starting point; your prompts must expand it into a full cinematic reality.
   - NO DIALOGUE REFORMING (CRITICAL): You MUST NEVER change, rephrase, or reform the script's lines, words, or sentences. NEVER add or remove any words. Always stick EXACTLY to the final script plan dialogues in each prompt box.
   - NO SKIPPING: You MUST cover the entire script in sequence from start to finish. DO NOT skip or miss any part of the story while creating the script plan or final prompts.
   - NO ANIMATION (CRITICAL): Never mention "animation", "animated", "cartoon", or any related terms in any B-roll descriptions or prompts. All visuals must be photorealistic cinematic realism.
@@ -108,7 +112,7 @@ CRITICAL: INDIAN MARKET FOCUS (LOWER & MIDDLE CLASS)
 - SHARPNESS LEVEL 0: ALL footage MUST look natural and realistic, NOT sharp. Specify "sharpness level 0", "raw low-end android footage (e.g., Mi A3 or Redmi 9A)", "natural focus", and "no digital sharpening" in all prompts.
 - CINEMATIC LOGIC & TIME-OF-DAY SENSITIVITY: 
   - THINK LIKE A MOVIE DIRECTOR: You MUST analyze the script for any time-of-day cues (e.g., "rat k 2 baje", "midnight", "early morning", "noon").
-  - LOGICAL LIGHTING: If the script implies a late-night scene (e.g., 2 AM), the house lights MUST be OFF. Do not show a bright room. Instead, use "dim moonlight filtering through a window", "harsh orange street lamp light from outside", or "the faint glow of a cheap Android phone screen (e.g., Oppo A15)". 
+  - LOGICAL LIGHTING: If the script implies a late-night scene (e.g., 2 AM), the house lights MUST be OFF. Do not show a bright room. Instead, use "dim moonlight filtering through a window", "harsh orange street lamp light from outside", or "the faint glow of a small lamp or candle". 
   - ATMOSPHERE: The lighting must reflect the logic of the scene. Noon should be harsh and bright; midnight should be dark, moody, and atmospheric.
 - STYLE: If "Raw Android Shot (Amateur)" is selected, the prompt must specify handheld cheap android phone camera physics (e.g., Redmi 8), natural/ambient lighting, and a spontaneous, unpolished look. Emphasize a realistic, slightly low-res, raw android photography aesthetic—avoid over-sharpening or expensive flagship-level clarity.
 - VIDEO STYLES:
@@ -118,13 +122,13 @@ CRITICAL: INDIAN MARKET FOCUS (LOWER & MIDDLE CLASS)
       1. Segment 0: Master Character Moodboard. Provide high-detail portraits of ALL main characters in the story within this single segment. 
          - FORMAT: Use a grid layout (e.g., 2x2 for one character, 4x2 for two characters).
          - AESTHETIC (CRITICAL): For these character portraits, use a **flat white background** and **professional studio lighting**.
-         - TEXT (CRITICAL): Each character's name MUST be clearly written in floating text directly inside the image above their head (e.g., "Rajesh", "Priya").
+         - TEXT (CRITICAL): You MUST write each character's name CLEARLY inside the image, floating directly above their head (e.g., "Rajesh", "Priya"). This text must be part of the generated image.
          - SHOTS: For each character, include a straight face (close-up), side face (profile), and mid shot. Keep faces BIG and CLEARLY VISIBLE.
          - EXCEPTION FOR AUTHORITATIVE SPEAKER: If the video style is "Veo 3.1 JSON Authoritative Speaker", ignore the standard environment moodboard rules. Instead, provide exactly TWO setup prompts for the environment:
            (A) Place Prompt: Focus on the center point where the authoritative character will sit/stand. Target the camera to orbit around and show 4 different angle points of that exact spot in a 4-panel grid.
            (B) Bird's Eye View Prompt: A top-down 1-panel view of the entire scene showing the full layout (who is sitting where, where the speaker is vs the listeners).
       2. Background Moodboard: Provide exactly 6 distinct, clear shots of the specific environments/locations required by the script arranged in a 2x3 grid format. (See Authoritative Speaker Exception above for environment rules).
-         - TEXT (CRITICAL): Each background shot MUST have its "Background Number" (e.g., "BG 1", "BG 2") clearly written in floating text directly inside the image.
+         - TEXT (CRITICAL): You MUST write the "Background Number" (e.g., "BG 1", "BG 2") CLEARLY inside each corresponding shot of the image. This text must be part of the generated image.
          - GPS COORDINATES RULE (CRITICAL): If the story is set in a specific location or city in India (e.g., Mumbai, Delhi, a specific village), you MUST include the exact or approximate GPS coordinates for that location in the description of EVERY background shot in the moodboard.
       3. Overall Direction: This segment MUST contain the "Overall Direction" block ONLY. This is given just once to set the global style.
          - **OVERALL DIRECTION TEMPLATE**:
@@ -147,9 +151,9 @@ CRITICAL: INDIAN MARKET FOCUS (LOWER & MIDDLE CLASS)
         - NO ABRUPT CUTS: If a dialogue must be split, DO NOT cut it abruptly in the middle of a thought. Instead, repeat the last logical phrase or sentence-start in the next prompt to ensure continuity for the editor. 
         - Example: If Scene 1 ends with "...सादे कागज पर कंज्यूमर कोर्ट की कंप्लेंट", Scene 2 should start from "उसने बस एक सादे कागज पर कंज्यूमर कोर्ट की कंप्लेंट लिख कर सेठ को थमा दी...".
     - DIALOGUE SHOTS (CRITICAL): Whenever a character is speaking dialogue, the shot MUST be a Close-Up (CU) or Medium Close-Up (MCU). The face must be clearly visible for lip-syncing (front face or slight side angle). STRICTLY NO full-body shots during dialogue.
-    - ACTION DURING DIALOGUE (NATURAL ACTIVITY): The character SHOULD NOT just stand and talk. They MUST be engaged in a natural, everyday activity while speaking to the camera or others. This includes things like: walking slowly through the environment, folding laundry, scrolling an Android phone (e.g., Vivo Y15), adjusting a dupatta or shirt sleeve, cleaning a wooden table with a cloth, or organizing small household items. The activity must feel continuous and natural, not robotic.
+    - ACTION DURING DIALOGUE (NATURAL ACTIVITY): The character SHOULD NOT just stand and talk. They MUST be engaged in a natural, everyday activity while speaking to the camera or others. This includes things like: walking slowly through the environment, folding laundry, adjusting a dupatta or shirt sleeve, cleaning a wooden table with a cloth, or organizing small household items. The activity must feel continuous and natural, not robotic. DO NOT use "scrolling phone" as a default example unless specifically required.
     - NO DRINKING/SIPPING DURING DIALOGUE (CRITICAL): There MUST NOT be any action of drinking or sipping (e.g., sipping tea/coffee, drinking water) in any video style while a character is speaking. If a character is described with a cup/glass, they must simply HOLD it the entire time. You may only include drinking or sipping actions in the B-roll prompts where no dialogue is spoken.
-    - HOLDING OBJECTS (CRITICAL): Whenever a character is holding something in their hand (e.g., a cup, a basic Android phone like Mi A3 or Lenovo K12, a tool), you MUST explicitly include the phrase "character hold [object] entire time from start to end." in the action description for visual stability.
+    - HOLDING OBJECTS (CRITICAL): Characters should ONLY be described as holding an object if it is contextually relevant to the script (e.g., a steel chai glass, a water bottle, a simple water glass, a clay matka, a tool, or a product). If an object is held, you MUST explicitly write "character is holding [object name] entire time from start to end." in the action description to ensure visual stability. DO NOT default to a character holding a phone. If no object is required by the script or setting, allow the character to have free hands for natural gestures. Avoid repetitive holding actions across different scenes.
     - EYE CONTACT (CRITICAL): When a character speaks directly to the audience, they MUST maintain direct eye contact with the camera. 
       - CONVERSATION EXCEPTION (CRITICAL): If the character is talking to someone else, they MUST look at that person and NOT at the camera.
     - NEGATIVE PROMPTS (CRITICAL): You MUST include the full negative_prompt block in the JSON output for EVERY segment (except Cast and Background Moodboard).
@@ -174,8 +178,8 @@ CRITICAL: INDIAN MARKET FOCUS (LOWER & MIDDLE CLASS)
       - If the script is first-person ("I did this", "Mene ye kiya"), the main character IS the narrator. 
       - If the script is third-person (telling someone else's story), create a separate narrator character who tells the story.
     - UGC CHARACTER LOCATION: For UGC scenes, the character should be mostly OUTSIDE in natural environments.
-    - ALIVE BACKGROUND & LIVE NATURAL MOOD (CRITICAL): The background MUST feel alive and dynamic, never like a still image. You MUST explicitly include background characters filling the scene to make it real (e.g., people walking by, doing some work, or chores in the background). There should ALWAYS be some kind of basic background activity occurring, but it MUST NOT be the focus and MUST NOT disturb the main character.
-    - COMPULSORY CHARACTER ACTIVITY: To ensure a natural feel, every scene MUST depict the character performing a script-relevant or environment-relevant activity. The character should NEVER be static. Examples: walking slowly while talking, casually checking a product, interacting with a basic Android phone like Oppo A15, or doing a minor chore (dusting, fixing hair, arranging things).
+    - ALIVE BACKGROUND & LIVE NATURAL MOOD (CRITICAL): The background MUST feel alive and dynamic, never like a still image. You MUST explicitly include multiple background characters (e.g., people walking by, neighbors chatting, vendors at work, or children playing) filling the background to make the scene feel real and lived-in. There should ALWAYS be some kind of natural background activity occurring (e.g., a cycle passing by, birds in the sky, or distant traffic), but it MUST NOT be the focus and MUST NOT disturb the main character. If a scene is set in a public space (street, shop, park), it MUST look busy with background life.
+    - COMPULSORY CHARACTER ACTIVITY: To ensure a natural feel, every scene MUST depict the character performing a script-relevant or environment-relevant activity. The character should NEVER be static. Examples: walking slowly while talking, casually checking a product, or doing a minor chore (dusting, fixing hair, arranging things). Avoid overusing phone-related activities.
     - ENVIRONMENT LOGIC: The environment must be logical for the activity (e.g., a sewing machine can be inside a house or outside if it fits the story). If indoors or outdoors, maintain the "alive background" with background characters doing quiet, non-disturbing work/chores.
     - SCRIPT DOUBLE PASS (CRITICAL): The provided "USER SCRIPT PLAN" contains two arrays ('dialogueSegments' and 'brollSegments'). You MUST map the provided 'dialogueSegments' array EXACTLY to PASS 1, and the 'brollSegments' array EXACTLY to PASS 2.
     - PASS 1 (UGC STYLE): Translate every exact segment from 'dialogueSegments' into a scene depicting the character speaking directly to the camera in various backgrounds.
@@ -309,7 +313,7 @@ CRITICAL: INDIAN MARKET FOCUS (LOWER & MIDDLE CLASS)
           }
         }
       ],
-      "negative_prompt": "no third hand, no things disappearing or evaporating, no two phones, no object disappearing, no video anomaly, no glitches, no phone screen, phone showcase, text overlay, subtitles, on-screen text, smooth camera, studio setup, bright clean room, no model like woman, no jewelry focus,no urban setting, no CGI,no 3D render,no cartoon,no anime, plastic skin, wax-like texture, uncanny valley, jittery movement, sliding feet, teleporting limbs, extra fingers, morphing background, over-saturated colors, bloom effect, motion blur artifacts, robotic movement, frame skipping, floating objects. [For Movie/Authoritative styles, ALSO append: 'no looking at camera, no staring at lens, no eye contact with camera, no smiling at camera']."
+      "negative_prompt": "no third hand, no things disappearing or evaporating, no character holding phone, no two phones, no object disappearing, no video anomaly, no glitches, no phone screen, phone showcase, text overlay, subtitles, on-screen text, smooth camera, studio setup, bright clean room, no model like woman, no jewelry focus,no urban setting, no CGI,no 3D render,no cartoon,no anime, plastic skin, wax-like texture, uncanny valley, jittery movement, sliding feet, teleporting limbs, extra fingers, morphing background, over-saturated colors, bloom effect, motion blur artifacts, robotic movement, frame skipping, floating objects. [For Movie/Authoritative styles, ALSO append: 'no looking at camera, no staring at lens, no eye contact with camera, no smiling at camera']."
     }
   - The 4 INTRO SHOTS rule is BYPASSED for this style.
   - CRITICAL: NO WINKING, NO SELFIE SHOTS. Ensure no character is winking and NO shot is a selfie in any segment.
@@ -322,7 +326,7 @@ CRITICAL: VISUAL CONTINUITY & SINGLE VIDEO FLOW
 - ENVIRONMENT DEFINITION: In all styles, the environment (Modest Indian setting) MUST be script-driven. If the script is outdoors, the environment is outdoors. If the script is in a shop, the environment is a shop. DO NOT default to a home setting.
 
 CRITICAL: ABSOLUTE MANDATE FOR NEGATIVE PROMPTS IN JSON
-For every segment using a JSON style, the root of the JSON object MUST contain a key named "negative_prompt". This key MUST contain the following text: "no third hand, no things disappearing or evaporating, no two phones, no object disappearing, no video anomaly, no glitches, no phone screen, phone showcase, text overlay, subtitles, on-screen text, smooth camera, studio setup, bright clean room, no model like woman, no jewelry focus,no urban setting, no CGI,no 3D render,no cartoon,no anime, plastic skin, wax-like texture, uncanny valley, jittery movement, sliding feet, teleporting limbs, extra fingers, morphing background, over-saturated colors, bloom effect, motion blur artifacts, robotic movement, frame skipping, floating objects."
+For every segment using a JSON style, the root of the JSON object MUST contain a key named "negative_prompt". This key MUST contain the following text: "no third hand, no things disappearing or evaporating, no character holding phone, no two phones, no object disappearing, no video anomaly, no glitches, no phone screen, phone showcase, text overlay, subtitles, on-screen text, smooth camera, studio setup, bright clean room, no model like woman, no jewelry focus,no urban setting, no CGI,no 3D render,no cartoon,no anime, plastic skin, wax-like texture, uncanny valley, jittery movement, sliding feet, teleporting limbs, extra fingers, morphing background, over-saturated colors, bloom effect, motion blur artifacts, robotic movement, frame skipping, floating objects."
 - For "Movie" and "Authoritative Speaker" styles, you MUST ALSO ADD: ", no looking at camera, no staring at lens, no eye contact with camera, no smiling at camera" to the end of that string.
 - This is MANDATORY for every single prompt. DO NOT skip it.
 
@@ -360,19 +364,19 @@ PHASE 2: STRATEGIC ANALYSIS (THE DIRECTOR'S VISION)
 PHASE 3: THE ARCHITECTURAL BLUEPRINTS (HYPER-DETAILED PROMPTS)
 For each segment, construct a dense, technical, and evocative multi-part paragraph.
 Be hyper-specific about:
-1. SUBJECT DEFINITION: Describe the scene. This MUST be a single frame shot, no split screen (except for Segment 0). If "UGC (Vlog Style)" is selected, the character (Regular Indian, matching Segment 0) MUST be speaking directly to the camera in a vlog/selfie format. If "Conversation" is selected, describe two characters facing each other at a close distance, bodies oriented towards each other, engaged in talking (no extra objects or activities). If "B-Roll Focus" is selected, focus on cinematic action, objects, or environments where the character is acting out the scene (no direct eye contact). If "Storytelling Narrative" is selected, the character MUST NOT look into the camera; focus on their actions and interactions within the scene. Otherwise, describe the characters (using their names from Segment 0) and environment (Modest Desi Setting). If the product is in the scene, just reference the provided product image. CRITICAL: Whenever you refer to a character by name, you MUST append their outfit color and "(same exact character as reference)" immediately after the name (e.g., "Rajesh in a blue shirt (same exact character as reference)"). This is especially CRITICAL in scenes with multiple characters to ensure visual distinction.
-2. ACTION & POSTURE: Define the exact kinetic energy or active posture. Characters MUST be doing something natural (walking, working, using a phone, minor household chores) while in the scene. DESCRIBE the physical action in detail to ensure no static posing. For UGC, describe natural hand gestures and candid movements that happen while talking.
-3. ENVIRONMENT: A tangible, high-concept space (Modest Indian setting). You MUST explicitly reference the "Background Number" from Segment 0 (e.g., "Use Background 2 from Segment 0"). For "Conversation" style, you MUST maintain the spatial logic of the "270-degree environment shot" established in the moodboard. Describe any specific details needed for this shot while maintaining the core look of that background.
+1. SUBJECT DEFINITION: Describe the scene. This MUST be a single frame shot, no split screen (except for Segment 0). If "UGC (Vlog Style)" is selected, the character (Regular Indian, matching Segment 0) MUST be speaking directly to the camera in a vlog/selfie format. CRITICAL: In this format, the phone itself MUST NOT be visible; it is a POV shot from the phone's lens. If "Conversation" is selected, describe two characters facing each other at a close distance, bodies oriented towards each other, engaged in talking (no extra objects or activities). If "B-Roll Focus" is selected, focus on cinematic action, objects, or environments where the character is acting out the scene (no direct eye contact). If "Storytelling Narrative" is selected, the character MUST NOT look into the camera; focus on their actions and interactions within the scene. Otherwise, describe the characters (using their names from Segment 0) and environment (Modest Desi Setting). If the product is in the scene, just reference the provided product image. CRITICAL: Whenever you refer to a character by name, you MUST append their outfit color and "(same exact character as reference)" immediately after the name (e.g., "Rajesh in a blue shirt (same exact character as reference)"). This is especially CRITICAL in scenes with multiple characters to ensure visual distinction.
+2. ACTION & POSTURE: Define the exact kinetic energy or active posture. Characters MUST be doing something natural (walking, working, minor household chores) while in the scene. DESCRIBE the physical action in detail to ensure no static posing. For UGC, describe natural hand gestures and candid movements that happen while talking. Avoid over-mentioning phones.
+3. ENVIRONMENT: A tangible, high-concept space (Modest Indian setting). You MUST explicitly reference the "Background Number" from Segment 0 (e.g., "Use Background 2 from Segment 0"). CRITICAL: Every environment MUST include background characters (e.g., "neighbors passing by", "a street vendor in the distance", "children playing in the background") and dynamic background elements (e.g., "swaying trees", "dust particles in sunlight") to ensure it feels like a live, real-world location. For "Conversation" style, maintain the spatial logic of the "270-degree environment shot" while adding these background life elements.
 4. MOOD & STORY: The emotional subtext.
-5. VISUAL STYLE: Specify the exact medium based on the requested VIDEO STYLE. If "Raw Android Shot", emphasize cheap android phone camera aesthetics (specifying model numbers like Redmi 8 or Vivo Y12S) (realistic, slightly low-res, raw photography, not too sharp). If "UGC (Vlog Style)", emphasize handheld vlog/selfie aesthetics with a consistent environment matching Segment 0. If the segment is a "[Repeat Camera Angle]", ensure the camera position and framing exactly match the previous instance.
+5. VISUAL STYLE: Specify the exact medium based on the requested VIDEO STYLE. If "Raw Android Shot", emphasize cheap android phone camera aesthetics (specifying model numbers like Redmi 8 or Vivo Y12S) (realistic, slightly low-res, raw photography, not too sharp). For selfie/vlog shots, the phone MUST NOT be visible. If "UGC (Vlog Style)", emphasize handheld vlog/selfie aesthetics with a consistent environment matching Segment 0. If the segment is a "[Repeat Camera Angle]", ensure the camera position and framing exactly match the previous instance.
 6. LIGHTING & COLOR: Define the setup and color theory (keep consistent across the moodboard). For UGC, use natural, uncorrected lighting. For cinematic styles, ensure the lighting matches the TIME-OF-DAY logic established in the script analysis (e.g., if it's 2 AM, specify "pitch black environment with only a single dim blue moonlight source" or "dark room with orange street-light spill").
-7. CAMERA & LENS PHYSICS: Specify camera, lens, and aperture. For Android/UGC style, use basic android phone lens specs (e.g., 26mm, f/1.8, mentioning specific models like Oppo A54 or Lenovo M10) and mention handheld jitter, selfie-stick angles, and the character looking directly into the lens. Emphasize a "normal" android phone look—not too sharp, realistic, with a raw photography feel. For "Storytelling Narrative" and "B-Roll Focus" (after the intro), use cinematic lens specs (e.g., 35mm, 50mm, 85mm) and ensure the character is NOT looking into the lens.
+7. CAMERA & LENS PHYSICS: Specify camera, lens, and aperture. For Android/UGC style, use basic android phone lens specs (e.g., 26mm, f/1.8, mentioning specific models like Oppo A54 or Lenovo M10) and mention handheld jitter, but ensure the phone itself is NOT in shot for selfie/vlog framing. Mention the character looking directly into the lens. Emphasize a "normal" android phone look—not too sharp, realistic, with a raw photography feel. For "Storytelling Narrative" and "B-Roll Focus" (after the intro), use cinematic lens specs (e.g., 35mm, 50mm, 85mm) and ensure the character is NOT looking into the lens.
 8. TEXTURE & PBR: Micro-details and materials.
 9. NEGATIVE CONSTRAINTS: For all segments EXCEPT Segment 0, you MUST append: "--no split screen, no collage, no grid, no multiple views, no multiple panels, no multiple frames, single frame only, no indoor plants, no decorative vases, no modern art, no luxury furniture, no designer sofas, no broken walls, no extreme poverty, no plastic skin, glossy, overly smooth, artificial lighting, 3D render, cartoonish, arbitrary placement, centered framing, stock photography vibe, no winking, no winks, over-sharpened, high-end DSLR look, professional studio lighting, CGI, 3D render, cartoon, anime, wax-like texture, uncanny valley, jittery movement, sliding feet, teleporting limbs, extra fingers, morphing background, over-saturated colors, bloom effect, motion blur artifacts, robotic movement, frame skipping, floating objects. MUST follow real life physics."
 10. FINAL CONSISTENCY CHECK: At the absolute end of EVERY prompt (after the negative constraints), you MUST append the exact sentence: "Make sure to use same exact character as given in reference"
 
 CRITICAL: OUTPUT FORMAT
-- CHARACTER NAME CONSISTENCY (MANDATORY): EVERY TIME you mention a character's name in ANY prompt, you MUST append their outfit and "(same exact character as reference)". NO EXCEPTIONS.
+- CHARACTER NAME CONSISTENCY (MANDATORY): EVERY TIME you mention a character's name in ANY prompt, you MUST append their outfit and the exact phrase " (same exact character as reference)". DO NOT skip this under any circumstances. It must be present in every single mention.
 - You MUST output the segments in order, starting with "Segment 0: Master Moodboard".
 - For "Ready to Go" and "Veo 3.1 JSON" styles, Segment 1 is also a Moodboard (Backgrounds).
 - For "Conversation" style, you MUST follow the specific SHOT DISTRIBUTION defined in the "Conversation Style" section above.
@@ -420,6 +424,8 @@ export default function App() {
   const [error, setError] = useState<string | null>(null);
   const [history, setHistory] = useState<HistoryItem[]>([]);
   const [loadingHistory, setLoadingHistory] = useState(false);
+  const [extraPromptText, setExtraPromptText] = useState('');
+  const [isGeneratingExtra, setIsGeneratingExtra] = useState(false);
 
   useEffect(() => {
     fetchHistory();
@@ -550,7 +556,7 @@ export default function App() {
            - For "Storytelling": A list of segments where the character speaks to the camera (UGC style). 
              - If first-person, the main character is the speaker. 
              - If third-person, a separate narrator is the speaker.
-             - Include basic activities for the speaker (e.g., walking, scrolling a basic Android phone like Vivo Y12S) that fit the script.
+             - Include basic activities for the speaker (e.g., walking, adjusting clothes, fixing hair) that fit the script.
            - For "Conversation": A list of segments where characters talk to EACH OTHER (NOT to the camera).
            - For "Movie": A list of segments formatted as cinematic movie scenes. Characters interact with each other or the environment, NOT the camera (unless specified). If one character speaks and another is present, explicitly note the other is "listening silently".
            - For "Authoritative Speaker": A list of segments formatted for an authoritative speaker at a fixed location talking to a listening party, changing only the camera angles around them.
@@ -732,6 +738,54 @@ export default function App() {
     }
   };
 
+  const handleCopyPrompt = async (prompt: string, index: number) => {
+    try {
+      await navigator.clipboard.writeText(prompt);
+      setCopiedIndex(index);
+      setTimeout(() => setCopiedIndex(null), 2000);
+    } catch (err) {
+      console.error("Failed to copy:", err);
+    }
+  };
+
+  const handleGenerateExtra = async () => {
+    if (!extraPromptText.trim()) return;
+    setIsGeneratingExtra(true);
+    try {
+      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
+      
+      const lastContext = segments.length > 0 
+        ? `Last segment summary: ${segments[segments.length - 1].visualCue}` 
+        : `Overall analysis: ${analysis}`;
+
+      const prompt = `Based on the following request: "${extraPromptText}"
+      Context: ${lastContext}
+      Generate ONE (1) additional prompt segment following the exact video style: ${videoStyle}.
+      Output MUST be a single segment object that can be added to the current segments array.
+      Use the same format: { "timestamp": "...", "scriptText": "...", "visualCue": "...", "prompt": "..." }
+      
+      CRITICAL: If the style is 'Veo 3.1 JSON', the 'prompt' field MUST be a stringified JSON object following the same rules as the original prompts.`;
+
+      const result = await ai.models.generateContent({
+        model: selectedModel,
+        contents: { parts: [{ text: prompt }] },
+        config: {
+          systemInstruction: SYSTEM_PROMPT,
+          responseMimeType: "application/json"
+        }
+      });
+
+      const newSegment = JSON.parse(result.text || '{}');
+      setSegments([...segments, newSegment]);
+      setExtraPromptText('');
+    } catch (err) {
+      console.error("Failed to generate extra prompt:", err);
+      setError("Failed to generate additional content.");
+    } finally {
+      setIsGeneratingExtra(false);
+    }
+  };
+
   const copyToClipboard = () => {
     navigator.clipboard.writeText(segments.map(s => `[${s.timestamp}] ${s.visualCue}\nPrompt: ${s.prompt}`).join('\n\n'));
     setCopiedAll(true);
@@ -822,576 +876,426 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen p-4 md:p-8 max-w-6xl mx-auto">
-      {/* Header */}
-      <header className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4">
-        <div>
-          <div className="flex items-center gap-2 mb-2">
-            <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-              <Zap className="w-5 h-5 text-black fill-black" />
-            </div>
-            <h1 className="text-2xl font-bold tracking-tighter uppercase">AI Creative Director</h1>
-          </div>
-          <p className="text-muted text-sm max-w-md">
-            Advanced visual synthesis for Recraft V4. 
-            The engine autonomously handles art direction, lighting, and physics.
-          </p>
+    <div className="min-h-screen text-white/90 selection:bg-accent/30 selection:text-highlight flex flex-col font-sans">
+      {/* Top Navbar */}
+      <nav className="w-full flex flex-col sm:flex-row justify-between items-center px-4 sm:px-12 py-8 font-mono-label z-50">
+        <div className="flex items-center gap-3 text-white font-bold tracking-widest text-sm mb-4 sm:mb-0">
+          <svg className="w-5 h-5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          RECRAFT V4
         </div>
-        <div className="flex gap-4 text-[10px] font-mono text-muted uppercase tracking-widest">
-          <span>v5.0.0</span>
-          <span>Engine: Gemini 3.0</span>
-          <span>Status: Autonomous</span>
+        <div className="tracking-[0.2em] text-accent font-semibold text-center mb-4 sm:mb-0">AI CREATIVE DIRECTOR</div>
+        <div className="hidden lg:flex gap-6 opacity-60 text-[10px]">
+          <span>VS.8.0</span>
+          <span>ENGINE: GEMINI 3.0</span>
+          <span>STATUS: AUTONOMOUS</span>
         </div>
-      </header>
+      </nav>
 
-      <main className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        {/* Input Section */}
-        <section className="lg:col-span-5 space-y-6">
-          <div className="space-y-4">
-            <div className="glass p-6 rounded-xl space-y-4">
-              <div className="flex items-center justify-between">
-                <label className="label">Video Script</label>
+      <main className="flex-grow max-w-5xl mx-auto w-full px-4 sm:px-8 pb-32 flex flex-col items-center">
+        
+        {/* Hero Section */}
+        <div className="text-center py-20 w-full relative">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[300px] bg-accent/10 blur-[130px] pointer-events-none rounded-full" />
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-[0.02em] text-white mb-6 relative z-10 leading-tight">
+            Harness Advanced Visual<br />Synthesis for Recraft V4.
+          </h1>
+        </div>
+
+        {/* Core Controls */}
+        <div className="w-full space-y-12 max-w-[900px] relative z-10">
+          
+          {/* Script Input Panel */}
+          <div className="cyber-panel cyber-glowing relative overflow-hidden transition-all duration-500">
+            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-accent to-transparent opacity-60" />
+            <div className="p-8 sm:p-10">
+              <div className="flex items-center justify-between mb-8">
+                <span className="font-mono-label text-white tracking-widest">VIDEO SCRIPT</span>
                 <button 
-                  onClick={handleClear}
-                  className="text-[10px] font-mono text-muted hover:text-white flex items-center gap-1.5 px-2 py-1 rounded bg-white/5 hover:bg-white/10 transition-all uppercase tracking-widest"
+                  onClick={handleClear} 
+                  className="flex items-center gap-2 cyber-button px-5 py-2.5 text-[10px] font-mono hover:bg-white/10 uppercase transition-all tracking-widest text-white/70 hover:text-white"
                 >
-                  <Trash2 className="w-3 h-3" />
-                  Clear All
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M10 11v6M14 11v6"/></svg> 
+                  CLEAR ALL
                 </button>
               </div>
               <textarea 
-                className="input-field w-full min-h-[200px] resize-none text-lg"
+                className="input-transparent w-full min-h-[160px] resize-none text-lg leading-relaxed placeholder:text-white/20 focus:text-white transition-colors"
                 placeholder="Paste your video script here. I will segment it and generate visual prompts..."
                 value={idea}
                 onChange={(e) => setIdea(e.target.value)}
               />
+            </div>
+          </div>
 
-              <div className="space-y-3">
-                <label className="label text-[10px] opacity-50">AI Engine</label>
-                <div className="flex flex-wrap gap-2">
-                  {MODELS.map(model => (
-                    <button
-                      key={model}
-                      onClick={() => setSelectedModel(model)}
-                      className={`px-3 py-1.5 rounded-full text-xs font-mono transition-colors ${
-                        selectedModel === model 
-                          ? 'bg-blue-500 text-white font-bold' 
-                          : 'bg-white/5 text-muted hover:bg-white/10 hover:text-white'
-                      }`}
-                    >
-                      {model}
-                    </button>
-                  ))}
+          <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent my-16" />
+
+          {/* AI Engine Selection */}
+          <div className="space-y-6">
+            <div className="font-mono-label pl-2">CHOOSE YOUR AI ENGINE</div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {MODELS.map(model => (
+                <button
+                  key={model}
+                  onClick={() => setSelectedModel(model)}
+                  className={`cyber-button py-6 px-6 text-[13px] font-medium tracking-wide flex items-center justify-center ${selectedModel === model ? 'active' : ''}`}
+                >
+                  {model}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Video Style Selection */}
+          <div className="space-y-6 pt-4">
+            <div className="font-mono-label pl-2">DEFINE VIDEO STYLE & DIRECTION</div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {VIDEO_STYLES.map(style => (
+                <button
+                  key={style}
+                  onClick={() => setVideoStyle(style)}
+                  className={`cyber-button py-6 px-6 text-[13px] font-medium tracking-wide flex justify-center items-center ${videoStyle === style ? 'active flex flex-col' : ''}`}
+                >
+                  {style}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Product Reference */}
+          <div className="space-y-6 pt-4">
+            <div className="font-mono-label pl-2">ADD PRODUCT REFERENCE (OPTIONAL)</div>
+            <div className="relative group w-full">
+              {!referenceImage ? (
+                <label 
+                  onDragOver={(e) => e.preventDefault()}
+                  onDrop={handleDrop}
+                  className="flex flex-col items-center justify-center w-full h-36 cyber-button cursor-pointer hover:border-accent hover:bg-accent/5 transition-all group border-dashed border-white/20 hover:border-accent/50"
+                >
+                  <svg className="w-6 h-6 text-white/30 mb-4 group-hover:text-accent transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+                  <span className="font-mono-label text-[10px] group-hover:text-white transition-colors tracking-widest text-white/40">PASTE, DRAG & DROP OR CLICK TO UPLOAD</span>
+                  <input type="file" className="hidden" accept="image/*" onChange={handleImageUpload} />
+                </label>
+              ) : (
+                <div className="relative w-full h-40 cyber-panel overflow-hidden flex justify-center items-center border border-accent/40 bg-black/50">
+                  <img src={referenceImage} alt="Reference" className="h-full object-contain" />
+                  <button 
+                    onClick={() => setReferenceImage(null)}
+                    className="absolute top-4 right-4 p-2 bg-black/80 rounded-full text-white hover:bg-red-500/80 transition-all border border-white/10"
+                  >
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                  </button>
                 </div>
-              </div>
+              )}
+            </div>
+          </div>
 
-              <div className="space-y-3">
-                <label className="label text-[10px] opacity-50">Video Style & Direction</label>
-                <div className="flex flex-wrap gap-2">
-                  {VIDEO_STYLES.map(style => (
-                    <button
-                      key={style}
-                      onClick={() => setVideoStyle(style)}
-                      className={`px-3 py-1.5 rounded-full text-xs font-mono transition-colors ${
-                        videoStyle === style 
-                          ? 'bg-emerald-500 text-black font-bold' 
-                          : 'bg-white/5 text-muted hover:bg-white/10 hover:text-white'
-                      }`}
-                    >
-                      {style}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div className="space-y-3">
-                <label className="label text-[10px] opacity-50">Product Reference Image (Optional)</label>
-                <div className="relative group">
-                  {!referenceImage ? (
-                    <label 
-                      onDragOver={(e) => e.preventDefault()}
-                      onDrop={handleDrop}
-                      className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-white/10 rounded-xl hover:border-white/20 hover:bg-white/5 transition-all cursor-pointer"
-                    >
-                      <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                        <Upload className="w-6 h-6 text-muted mb-2 group-hover:text-white transition-colors" />
-                        <p className="text-[10px] font-mono text-muted uppercase tracking-widest">Paste, Drag & Drop or Click to Upload</p>
-                      </div>
-                      <input type="file" className="hidden" accept="image/*" onChange={handleImageUpload} />
-                    </label>
-                  ) : (
-                    <div className="relative w-full h-32 rounded-xl overflow-hidden border border-white/10">
-                      <img src={referenceImage} alt="Reference" className="w-full h-full object-cover" />
-                      <button 
-                        onClick={() => setReferenceImage(null)}
-                        className="absolute top-2 right-2 p-1 bg-black/50 backdrop-blur-md rounded-full text-white hover:bg-black/70 transition-colors"
-                      >
-                        <X className="w-3 h-3" />
-                      </button>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <label className="label text-[10px] opacity-50">Text Content (Optional)</label>
-                <input 
-                  type="text"
-                  className="input-field w-full py-3 px-4 text-sm"
-                  placeholder="Any specific text to include in the image?"
-                  value={imageText}
-                  onChange={(e) => setImageText(e.target.value)}
-                />
-              </div>
-              
-              <div className="p-4 bg-white/5 rounded-lg border border-white/5">
-                <p className="text-[10px] font-mono text-muted uppercase tracking-widest leading-relaxed">
-                  Director's Note: I will autonomously determine the optimal mood, brand tonality, 
-                  cinematic lighting, and lens physics based on your concept.
+          {/* Analyze or Structural Plan Edit */}
+          {!isAnalyzing ? (
+            <div className="pt-12 w-full flex justify-center">
+              <button 
+                onClick={analyzeScript}
+                disabled={loading || !idea.trim()}
+                className="cyber-button active w-full py-8 flex items-center justify-center gap-4 text-sm font-bold tracking-widest disabled:opacity-50 transition-all"
+              >
+                {loading ? (
+                  <svg className="w-5 h-5 animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+                ) : (
+                  <>
+                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    INITIALIZE ARCHITECTURAL ANALYSIS
+                  </>
+                )}
+              </button>
+            </div>
+          ) : (
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="space-y-12 mt-20 pt-16 border-t border-white/5"
+            >
+              <div className="flex flex-col items-center gap-4 mb-16">
+                <div className="font-mono-label text-highlight tracking-[0.2em] shadow-accent/20">ANALYSIS COMPLETE. STRUCTURAL PLAN.</div>
+                <p className="text-[13px] font-mono text-muted text-center italic max-w-2xl leading-relaxed">
+                  "{analysis}"
                 </p>
               </div>
-
-              {!isAnalyzing ? (
-                <button 
-                  onClick={analyzeScript}
-                  disabled={loading || !idea.trim()}
-                  className="w-full bg-white text-black font-bold py-5 rounded-lg flex items-center justify-center gap-2 hover:bg-zinc-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed group"
-                >
-                  {loading ? (
-                    <RefreshCw className="w-5 h-5 animate-spin" />
-                  ) : (
-                    <>
-                      <BrainCircuit className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                      ANALYZE & PLAN SCRIPT
-                    </>
-                  )}
-                </button>
-              ) : (
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="label mb-0">Script Plan (Editable)</h3>
-                    <button 
-                      onClick={addEditableSegment}
-                      className="p-1.5 bg-white/5 hover:bg-white/10 rounded-lg text-white transition-colors"
-                      title="Add Segment"
-                    >
-                      <Plus className="w-4 h-4" />
+              
+              {videoStyle === "Veo 3.1 JSON" ? (
+                <div className="space-y-6">
+                  <div className="flex justify-between items-center px-2">
+                    <span className="font-mono-label text-white">SCENE SEQUENCES</span>
+                    <button onClick={addEditableSegment} className="cyber-button px-4 py-2 text-xs flex items-center gap-2 hover:text-white">
+                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 5v14M5 12h14"/></svg> 
+                      ADD SCENE
                     </button>
                   </div>
-                  
-                  <div className="space-y-4 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
-                    {videoStyle === "Veo 3.1 JSON" ? (
-                      editableSegments.map((seg, idx) => (
-                        <div key={idx} className="p-4 bg-white/5 rounded-xl border border-white/10 space-y-3 relative group">
-                          <div className="flex items-center justify-between mb-1">
-                            <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">{seg.title || `Prompt ${idx + 1}`}</span>
-                            <button 
-                              onClick={() => removeEditableSegment(idx)}
-                              className="p-1 bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white rounded-lg transition-all opacity-0 group-hover:opacity-100"
-                            >
-                              <X className="w-3 h-3" />
-                            </button>
-                          </div>
+                  <div className="space-y-6">
+                    {editableSegments.map((seg, idx) => (
+                      <div key={idx} className="cyber-panel p-8 space-y-8 relative group border-white/5 hover:border-accent/30 transition-colors bg-white/[0.01]">
+                        <div className="flex items-center justify-between border-b border-white/5 pb-4">
+                          <span className="font-mono-label text-accent">SEQUENCE {idx + 1}</span>
+                          <button onClick={() => removeEditableSegment(idx)} className="p-2 text-red-500/40 hover:text-red-400 rounded transition-all">
+                            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                          </button>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                           <div>
-                            <label className="text-[9px] font-mono text-muted uppercase tracking-widest block mb-1">Script (Hindi)</label>
+                            <label className="font-mono-label block mb-4 opacity-50">DIALOGUE / NARRATIVE</label>
                             <textarea 
-                              className="input-field w-full text-sm min-h-[60px] resize-none"
+                              className="input-transparent w-full min-h-[140px] resize-none text-sm leading-relaxed border border-white/10 hover:border-white/20 focus:border-accent/50 rounded-lg p-5 cyber-button transition-all"
                               value={seg.script}
                               onChange={(e) => updateEditableSegment(idx, 'script', e.target.value)}
                             />
                           </div>
                           <div>
-                            <label className="text-[9px] font-mono text-muted uppercase tracking-widest block mb-1">B-Roll Idea</label>
+                            <label className="font-mono-label block mb-4 opacity-50">VISUAL ACTION (B-ROLL)</label>
                             <textarea 
-                              className="input-field w-full text-sm min-h-[60px] resize-none border-emerald-500/20"
+                              className="input-transparent w-full min-h-[140px] resize-none text-sm leading-relaxed border border-white/10 hover:border-white/20 focus:border-accent/50 rounded-lg p-5 cyber-button transition-all"
                               value={seg.broll}
                               onChange={(e) => updateEditableSegment(idx, 'broll', e.target.value)}
                             />
                           </div>
                         </div>
-                      ))
-                    ) : (
-                      <div className="space-y-8">
-                        {/* Dialogue Section */}
-                        {videoStyle !== "Veo 3.1 JSON Only B-roll" && (
-                          <div className="space-y-4">
-                            <div className="flex items-center justify-between mb-2">
-                              <h3 className="label mb-0 text-emerald-400">
-                                {videoStyle === "Veo 3.1 JSON Storytelling" ? "Dialogue Segments (UGC)" : videoStyle === "Veo 3.1 JSON Movie" ? "Movie Segments (Cinematic)" : videoStyle === "Veo 3.1 JSON Authoritative Speaker" ? "Speaker Segments (Fixed Location)" : "Dialogue Segments (Conversation)"}
-                              </h3>
-                              <button 
-                                onClick={addDialogueSegment}
-                                className="p-1.5 bg-white/5 hover:bg-white/10 rounded-lg text-white transition-colors"
-                                title="Add Dialogue"
-                              >
-                                <Plus className="w-4 h-4" />
-                              </button>
-                            </div>
-                            <div className="space-y-3 max-h-[250px] overflow-y-auto pr-2 custom-scrollbar">
-                              {editableDialogueSegments.map((seg, idx) => (
-                                <div key={idx} className="p-3 bg-white/5 rounded-xl border border-white/10 relative group">
-                                  <div className="flex items-center justify-between mb-2">
-                                    <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest">{seg.title || `Prompt ${idx + 1}`}</span>
-                                    <button 
-                                      onClick={() => removeDialogueSegment(idx)}
-                                      className="p-1 bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white rounded-lg transition-all opacity-0 group-hover:opacity-100"
-                                    >
-                                      <X className="w-3 h-3" />
-                                    </button>
-                                  </div>
-                                  <textarea 
-                                    className="input-field w-full text-sm min-h-[50px] resize-none"
-                                    placeholder="Enter Hindi script..."
-                                    value={seg.script}
-                                    onChange={(e) => updateDialogueSegment(idx, e.target.value)}
-                                  />
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-
-                        {/* B-Roll Section */}
-                        <div className="space-y-4">
-                          <div className="flex items-center justify-between mb-2">
-                            <h3 className="label mb-0 text-amber-400">B-Roll Segments (Action)</h3>
-                            <button 
-                              onClick={addBrollSegment}
-                              className="p-1.5 bg-white/5 hover:bg-white/10 rounded-lg text-white transition-colors"
-                              title="Add B-Roll"
-                            >
-                              <Plus className="w-4 h-4" />
-                            </button>
-                          </div>
-                          <div className="space-y-3 max-h-[250px] overflow-y-auto pr-2 custom-scrollbar">
-                            {editableBrollSegments.map((seg, idx) => (
-                              <div key={idx} className="p-3 bg-white/5 rounded-xl border border-white/10 relative group">
-                                <div className="flex items-center justify-between mb-2">
-                                  <span className="text-[10px] font-bold text-amber-400 uppercase tracking-widest">{seg.title || `B-Roll Prompt ${idx + 1}`}</span>
-                                  <button 
-                                    onClick={() => removeBrollSegment(idx)}
-                                    className="p-1 bg-red-500/20 hover:bg-red-500 text-red-400 hover:text-white rounded-lg transition-all opacity-0 group-hover:opacity-100"
-                                  >
-                                    <X className="w-3 h-3" />
-                                  </button>
-                                </div>
-                                <textarea 
-                                  className="input-field w-full text-sm min-h-[50px] resize-none border-amber-500/20"
-                                  placeholder="Enter B-roll action..."
-                                  value={seg.broll}
-                                  onChange={(e) => updateBrollSegment(idx, e.target.value)}
-                                />
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="flex gap-3">
-                    <button 
-                      onClick={() => setIsAnalyzing(false)}
-                      className="flex-1 bg-white/5 text-white font-bold py-4 rounded-lg hover:bg-white/10 transition-colors"
-                    >
-                      BACK
-                    </button>
-                    <button 
-                      onClick={generatePrompt}
-                      disabled={loading || (videoStyle === "Veo 3.1 JSON" ? editableSegments.length === 0 : (editableDialogueSegments.length === 0 && editableBrollSegments.length === 0))}
-                      className="flex-[2] bg-emerald-500 text-black font-bold py-4 rounded-lg flex items-center justify-center gap-2 hover:bg-emerald-400 transition-colors disabled:opacity-50"
-                    >
-                      {loading ? (
-                        <RefreshCw className="w-5 h-5 animate-spin" />
-                      ) : (
-                        <>
-                          <Sparkles className="w-5 h-5" />
-                          GENERATE FINAL BLUEPRINTS
-                        </>
-                      )}
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </section>
-
-        {/* Output Section */}
-        <section className="lg:col-span-7 space-y-6">
-          {/* Agent Analysis */}
-          <AnimatePresence>
-            {(analysis || loading) && (
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                className="glass rounded-xl p-6 border-emerald-500/20"
-              >
-                <div className="flex items-center gap-2 mb-4">
-                  <BrainCircuit className="w-4 h-4 text-emerald-400" />
-                  <h2 className="label mb-0 text-emerald-400">Strategist Analysis</h2>
-                </div>
-                <div className="min-h-[60px]">
-                  {loading ? (
-                    <div className="flex gap-2">
-                      <div className="w-1 h-4 bg-emerald-500/40 animate-pulse" />
-                      <div className="w-1 h-4 bg-emerald-500/40 animate-pulse delay-75" />
-                      <div className="w-1 h-4 bg-emerald-500/40 animate-pulse delay-150" />
-                      <span className="text-[10px] font-mono text-muted uppercase tracking-widest ml-2">Deconstructing intent...</span>
-                    </div>
-                  ) : (
-                    <p className="text-xs font-mono text-zinc-400 leading-relaxed italic">
-                      "{analysis}"
-                    </p>
-                  )}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {/* Blueprint Output */}
-          <div className="glass rounded-xl p-6 flex flex-col min-h-[400px]">
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-2">
-                <Terminal className="w-4 h-4 text-white" />
-                <h2 className="label mb-0">Architectural Blueprints (Segments)</h2>
-              </div>
-              {segments.length > 0 && (
-                <button 
-                  onClick={copyToClipboard}
-                  className={`flex items-center gap-2 text-xs transition-all px-3 py-1.5 rounded-lg ${
-                    copiedAll ? 'bg-emerald-500/20 text-emerald-400' : 'text-muted hover:text-white hover:bg-white/5'
-                  }`}
-                >
-                  {copiedAll ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                  {copiedAll ? 'Copied All' : 'Copy All Prompts'}
-                </button>
-              )}
-            </div>
-
-            <div className="flex-grow relative">
-              <AnimatePresence mode="wait">
-                {loading ? (
-                  <motion.div 
-                    key="loading"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="absolute inset-0 flex flex-col items-center justify-center text-center space-y-4"
-                  >
-                    <div className="w-12 h-12 border-2 border-white/10 border-t-white rounded-full animate-spin" />
-                    <div className="space-y-1">
-                      <p className="text-sm font-mono text-white">Synthesizing visual semantics...</p>
-                      <p className="text-[10px] text-muted uppercase tracking-widest">Mapping brand tonality to photographic physics</p>
-                    </div>
-                  </motion.div>
-                ) : segments.length > 0 ? (
-                  <motion.div 
-                    key="result"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="space-y-8"
-                  >
-                    {segments.map((segment, idx) => (
-                      <div key={idx} className="space-y-3 pb-6 border-b border-white/10 last:border-0">
-                        <div className="flex items-start justify-between gap-4">
-                          <div className="flex items-center gap-3">
-                            <span className="px-2 py-1 bg-white/10 rounded text-xs font-mono text-white">{segment.timestamp}</span>
-                            <h3 className="text-sm font-bold text-emerald-400">
-                              {segment.visualCue.includes('[Repeat Camera Angle]') ? (
-                                <>
-                                  <span className="text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.8)] animate-pulse">
-                                    [Repeat Camera Angle]
-                                  </span>
-                                  {segment.visualCue.replace('[Repeat Camera Angle]', '')}
-                                </>
-                              ) : segment.visualCue.includes('[B-Roll]') ? (
-                                <>
-                                  <span className="text-blue-400 font-bold">[B-Roll]</span>
-                                  {segment.visualCue.replace('[B-Roll]', '')}
-                                </>
-                              ) : (
-                                segment.visualCue
-                              )}
-                            </h3>
-                          </div>
-                          <CopyButton 
-                            text={segment.prompt} 
-                            isCopied={copiedIndex === idx}
-                            onCopy={() => {
-                              setCopiedIndex(idx);
-                              setCopiedAll(false);
-                            }}
-                          />
-                        </div>
-                        <p className="text-xs font-mono text-zinc-400 italic border-l-2 border-white/10 pl-3">
-                          "{segment.scriptText}"
-                        </p>
-                        {renderPrompt(segment.prompt)}
                       </div>
                     ))}
-                  </motion.div>
-                ) : (
-                  <motion.div 
-                    key="empty"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="absolute inset-0 flex flex-col items-center justify-center text-center opacity-20"
-                  >
-                    <Maximize className="w-12 h-12 mb-4" />
-                    <p className="text-sm font-mono">Awaiting architectural directives</p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                  </div>
+                </div>
+              ) : (
+                <div className="space-y-16">
+                  {videoStyle !== "Veo 3.1 JSON Only B-roll" && (
+                    <div className="space-y-6">
+                      <div className="flex justify-between items-center px-2 border-b border-white/5 pb-4">
+                        <span className="font-mono-label text-white">DIALOGUE SEQUENCES</span>
+                        <button onClick={addDialogueSegment} className="cyber-button px-4 py-2 text-xs flex items-center gap-2 hover:text-white">
+                          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 5v14M5 12h14"/></svg> 
+                          ADD DIALOGUE
+                        </button>
+                      </div>
+                      <div className="space-y-4">
+                        {editableDialogueSegments.map((seg, idx) => (
+                          <div key={idx} className="cyber-panel p-6 relative group bg-white/[0.01]">
+                            <button onClick={() => removeDialogueSegment(idx)} className="absolute top-6 right-6 p-1 text-red-500/40 hover:text-red-500 transition-all rounded">
+                              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                            </button>
+                            <label className="font-mono-label block mb-4 opacity-50">DIALOGUE LINE {idx+1}</label>
+                            <textarea 
+                              className="input-transparent w-full min-h-[80px] resize-none text-sm leading-relaxed"
+                              value={seg.script}
+                              onChange={(e) => updateDialogueSegment(idx, e.target.value)}
+                              placeholder="Enter dialogue line..."
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {videoStyle !== "Veo 3.1 JSON Storytelling" && videoStyle !== "Veo 3.1 JSON Authoritative Speaker" && (
+                    <div className="space-y-6">
+                      <div className="flex justify-between items-center px-2 border-b border-white/5 pb-4">
+                        <span className="font-mono-label text-white">VISUAL B-ROLL SEQUENCES</span>
+                        <button onClick={addBrollSegment} className="cyber-button px-4 py-2 text-xs flex items-center gap-2 hover:text-white">
+                          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 5v14M5 12h14"/></svg> 
+                          ADD B-ROLL
+                        </button>
+                      </div>
+                      <div className="space-y-4">
+                        {editableBrollSegments.map((seg, idx) => (
+                          <div key={idx} className="cyber-panel p-6 relative group bg-white/[0.01]">
+                            <button onClick={() => removeBrollSegment(idx)} className="absolute top-6 right-6 p-1 text-red-500/40 hover:text-red-500 transition-all rounded">
+                              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                            </button>
+                            <label className="font-mono-label block mb-4 opacity-50">VISUAL SHOT {idx+1}</label>
+                            <textarea 
+                              className="input-transparent w-full min-h-[80px] resize-none text-sm leading-relaxed"
+                              value={seg.broll}
+                              onChange={(e) => updateBrollSegment(idx, e.target.value)}
+                              placeholder="Enter visual action..."
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              <div className="flex flex-col md:flex-row gap-6 pt-12">
+                <button 
+                  onClick={() => setIsAnalyzing(false)} 
+                  className="cyber-button flex-1 py-6 font-mono-label hover:text-white tracking-[0.15em] text-[11px]"
+                >
+                  REVISE INITIAL INPUT
+                </button>
+                <button 
+                  onClick={generatePrompt} 
+                  disabled={loading} 
+                  className="cyber-button active flex-[2] py-6 font-bold flex justify-center items-center gap-3 text-sm tracking-[0.15em] transition-all"
+                >
+                  {loading ? <svg className="w-5 h-5 animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> : <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>}
+                  SYNTHESIZE FINAL BLUEPRINTS
+                </button>
+              </div>
+            </motion.div>
+          )}
+
+          <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent my-20" />
+
+          {/* Output Section */}
+          <div className="w-full relative space-y-12">
+            <div className="flex flex-col items-center">
+              <div className="flex gap-4 mb-6 text-white/50">
+                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 18l-6-6 6-6"/></svg>
+                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 18l6-6-6-6"/></svg>
+              </div>
+              <div className="font-mono-label text-white tracking-[0.2em] mb-4">ARCHITECTURAL BLUEPRINTS (SEGMENTS)</div>
             </div>
 
-            {error && (
-              <div className="mt-4 p-3 bg-red-500/10 border border-red-500/20 rounded text-red-400 text-xs font-mono">
-                {error}
+            {segments.length === 0 && !loading ? (
+              <div className="flex flex-col items-center justify-center py-20 space-y-10 opacity-60">
+                <div className="w-24 h-24 border border-accent/40 rounded-2xl shadow-[0_0_40px_rgba(72,168,154,0.15)] flex items-center justify-center bg-black/50">
+                  <div className="w-10 h-10 border border-white/20 rounded animate-pulse" />
+                </div>
+                <div className="font-mono text-sm tracking-[0.1em] text-white/60">Awaiting architectural directives</div>
               </div>
-            )}
+            ) : loading && segments.length === 0 ? (
+              <div className="flex flex-col items-center justify-center py-24 space-y-8">
+                <div className="w-16 h-16 border-2 border-white/10 border-t-accent rounded-full animate-spin" />
+                <div className="font-mono-label text-accent animate-pulse tracking-[0.2em]">SYNTHESIZING VISUAL MATRIX...</div>
+              </div>
+            ) : (
+              <div className="space-y-12 shrink-0">
+                {segments.map((segment, idx) => (
+                  <motion.div 
+                    key={idx}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    className={`cyber-panel relative overflow-hidden group/card cursor-pointer transition-all duration-300 ${copiedIndex === idx ? 'border-accent shadow-[0_0_30px_rgba(72,168,154,0.25)]' : 'hover:border-accent/40'}`}
+                    onClick={() => handleCopyPrompt(segment.prompt, idx)}
+                  >
+                    <div className="absolute inset-0 bg-black/70 backdrop-blur-sm opacity-0 group-hover/card:opacity-100 transition-all flex items-center justify-center z-10 duration-300 delay-75">
+                      <div className="cyber-button active px-8 py-4 font-mono-label text-[13px] flex items-center gap-3 shadow-[0_0_30px_rgba(72,168,154,0.2)]">
+                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> 
+                        CLICK ANYWHERE TO COPY PROMPT
+                      </div>
+                    </div>
 
-            {segments.length > 0 && (
-              <div className="mt-8 pt-6 border-t border-white/5 grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="space-y-1">
-                  <span className="text-[10px] text-muted uppercase font-mono block">Model</span>
-                  <span className="text-xs font-medium">Recraft V4 Pro</span>
+                    {copiedIndex === idx && (
+                      <div className="absolute top-6 right-6 z-20 bg-accent text-black px-4 py-1.5 rounded-full font-bold text-[9px] tracking-[0.2em] flex items-center gap-2 shadow-[0_0_15px_rgba(72,168,154,0.5)]">
+                        <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12"/></svg> 
+                        COPIED
+                      </div>
+                    )}
+
+                    <div className="p-8 md:p-12 relative z-0">
+                      <div className="flex flex-col md:flex-row md:items-center gap-6 mb-10 border-b border-white/5 pb-8">
+                        <div className="w-14 h-14 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-accent font-mono-label text-xl shrink-0">
+                          {idx + 1}
+                        </div>
+                        <div>
+                          <span className="font-mono-label text-white/40 block mb-2 tracking-[0.2em]">TIMECODE {segment.timestamp}</span>
+                          <h3 className="text-xl md:text-2xl font-bold text-white tracking-wide leading-tight">{segment.visualCue}</h3>
+                        </div>
+                      </div>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12">
+                        <div className="md:col-span-4">
+                          <div className="font-mono-label mb-5 opacity-60">NARRATIVE CONTEXT</div>
+                          <p className="text-[13px] leading-relaxed italic text-white/50 border-l border-accent/30 pl-5 pr-2">{segment.scriptText}</p>
+                        </div>
+                        <div className="md:col-span-8 bg-black/40 p-6 rounded-xl border border-white/5">
+                          <div className="font-mono-label mb-5 text-accent opacity-80">GENERATED PAYLOAD</div>
+                          {renderPrompt(segment.prompt)}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+
+                {/* Extra Prompt Generation */}
+                <div className="cyber-panel p-8 md:p-12 mt-16 border-dashed border-white/10 bg-black/20 hover:border-white/30 transition-all relative z-10">
+                  <div className="font-mono-label text-white mb-6 tracking-widest flex items-center gap-3">
+                    <svg className="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 5v14M5 12h14"/></svg>
+                    APPEND ADDITIONAL CONTEXT
+                  </div>
+                  <div className="space-y-6">
+                    <textarea 
+                      className="input-transparent w-full min-h-[140px] resize-none text-sm leading-relaxed cyber-button p-6 border-white/5 hover:border-white/20 focus:border-accent/40"
+                      placeholder="e.g., Detail a complex hero shot pushing in from a wide angle, adjusting the lighting..."
+                      value={extraPromptText}
+                      onChange={(e) => setExtraPromptText(e.target.value)}
+                    />
+                    <button 
+                      onClick={handleGenerateExtra}
+                      disabled={isGeneratingExtra || !extraPromptText.trim()}
+                      className="cyber-button w-full py-5 flex items-center justify-center gap-3 font-mono-label hover:border-accent hover:text-accent transition-all text-[11px] tracking-widest bg-white/[0.02]"
+                    >
+                      {isGeneratingExtra ? <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> : <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>}
+                      SYNTHESIZE & APPEND
+                    </button>
+                  </div>
                 </div>
-                <div className="space-y-1">
-                  <span className="text-[10px] text-muted uppercase font-mono block">Resolution</span>
-                  <span className="text-xs font-medium">2048 x 2048</span>
-                </div>
-                <div className="space-y-1">
-                  <span className="text-[10px] text-muted uppercase font-mono block">Format</span>
-                  <span className="text-xs font-medium">RAW / Vector</span>
-                </div>
-                <div className="space-y-1">
-                  <span className="text-[10px] text-muted uppercase font-mono block">Fidelity</span>
-                  <span className="text-xs font-medium">High-End</span>
-                </div>
+
               </div>
             )}
           </div>
-        </section>
-      </main>
-
-      {/* History Section */}
-      <section className="mt-16">
-        <div className="flex items-center gap-3 mb-8">
-          <History className="w-5 h-5 text-white" />
-          <h2 className="text-xl font-bold uppercase tracking-tighter">Architectural History</h2>
-          <div className="h-[1px] flex-grow bg-white/10" />
         </div>
 
-        {loadingHistory ? (
-          <div className="flex items-center justify-center py-12">
-            <RefreshCw className="w-6 h-6 animate-spin text-muted" />
-          </div>
-        ) : history.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {history.map((item, idx) => (
-              <motion.div 
-                key={idx}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: idx * 0.05 }}
-                className="glass p-5 rounded-xl space-y-4 hover:border-white/20 transition-colors group cursor-pointer"
-                onClick={() => {
-                  let loadedIdea = item.idea;
-                  let loadedStyle = VIDEO_STYLES[0];
-                  const styleMatch = loadedIdea.match(/^\[(.*?)\] (.*)/s);
-                  if (styleMatch) {
-                    loadedStyle = styleMatch[1];
-                    loadedIdea = styleMatch[2];
-                  }
-                  
-                  setIdea(loadedIdea);
-                  setVideoStyle(loadedStyle);
-                  setImageText(item.textContent || '');
-                  try {
-                    const parsed = JSON.parse(item.prompt);
-                    if (Array.isArray(parsed)) {
-                      setSegments(parsed);
-                    } else {
-                      setSegments([{ timestamp: "0:00", scriptText: "", visualCue: "Legacy Prompt", prompt: item.prompt }]);
-                    }
-                  } catch {
-                    setSegments([{ timestamp: "0:00", scriptText: "", visualCue: "Legacy Prompt", prompt: item.prompt }]);
-                  }
-                  setAnalysis(item.analysis || '');
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-[10px] font-mono text-muted uppercase tracking-widest">
-                    <Clock className="w-3 h-3" />
-                    {new Date(item.timestamp).toLocaleDateString()}
-                  </div>
-                  <ChevronRight className="w-4 h-4 text-muted group-hover:text-white transition-colors" />
-                </div>
-                <div className="space-y-2">
-                  <h3 className="text-xs font-bold uppercase tracking-wide line-clamp-1 text-white/90">
-                    {item.idea}
-                  </h3>
-                  {item.textContent && (
-                    <p className="text-[10px] font-mono text-emerald-400 uppercase tracking-widest">
-                      Text: "{item.textContent}"
-                    </p>
-                  )}
-                  <p className="text-[10px] font-mono text-muted line-clamp-3 leading-relaxed">
-                    {(() => {
+        {/* History Area */}
+        {history.length > 0 && (
+          <div className="w-full space-y-12 mt-24 relative z-10">
+            <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent mb-16" />
+            <div className="font-mono-label text-center mb-12 tracking-[0.2em] text-white/50">ARCHITECTURAL HISTORY</div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-[900px] mx-auto w-full">
+              {history.slice(0, 6).map((item, idx) => (
+                 <div 
+                   key={idx} 
+                   onClick={() => {
+                      let loadedIdea = item.idea;
+                      let loadedStyle = VIDEO_STYLES[0];
+                      const styleMatch = loadedIdea.match(/^\[(.*?)\] (.*)/s);
+                      if (styleMatch) {
+                        loadedStyle = styleMatch[1];
+                        loadedIdea = styleMatch[2];
+                      }
+                      setIdea(loadedIdea);
+                      setVideoStyle(loadedStyle);
+                      setImageText(item.textContent || '');
                       try {
                         const parsed = JSON.parse(item.prompt);
-                        if (Array.isArray(parsed)) {
-                          return `${parsed.length} Segments Generated`;
-                        }
-                        return item.prompt;
+                        setSegments(Array.isArray(parsed) ? parsed : [{ timestamp: "0:00", scriptText: "", visualCue: "Legacy Prompt", prompt: item.prompt }]);
                       } catch {
-                        return item.prompt;
+                        setSegments([{ timestamp: "0:00", scriptText: "", visualCue: "Legacy Prompt", prompt: item.prompt }]);
                       }
-                    })()}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-12 glass rounded-xl border-dashed border-white/10">
-            <p className="text-sm font-mono text-muted uppercase tracking-widest">No architectural records found</p>
+                      setAnalysis(item.analysis || '');
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                   }} 
+                   className="cyber-panel p-6 cursor-pointer hover:border-accent border-white/5 text-left bg-black/40 transition-all hover:bg-black/80"
+                 >
+                    <div className="font-mono-label text-[9px] mb-4 text-accent/70">{new Date(item.timestamp).toLocaleDateString()}</div>
+                    <div className="text-sm text-white/90 font-bold truncate mb-3">{item.idea}</div>
+                    <div className="text-[10px] text-white/40 font-mono leading-relaxed line-clamp-2">
+                       {(() => {
+                        try {
+                          const parsed = JSON.parse(item.prompt);
+                          return Array.isArray(parsed) ? `${parsed.length} Generated Segments` : item.prompt;
+                        } catch { return item.prompt; }
+                       })()}
+                    </div>
+                 </div>
+              ))}
+            </div>
           </div>
         )}
-      </section>
 
-      {/* Footer Info */}
-      <footer className="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between gap-8 pb-12">
-        <div className="max-w-sm">
-          <h3 className="text-xs font-bold uppercase tracking-widest mb-2">The Recraft V4 Paradigm</h3>
-          <p className="text-[11px] text-muted leading-relaxed">
-            Unlike legacy models, Recraft V4 embeds design logic directly into the generative process. 
-            This application ensures visual choices—arrangement, color interaction, and spatial movement—are 
-            intentional rather than arbitrary.
-          </p>
-        </div>
-        <div className="flex gap-12">
-          <div className="space-y-2">
-            <h4 className="text-[10px] font-mono text-muted uppercase tracking-widest">Framework</h4>
-            <ul className="text-[10px] space-y-1 uppercase">
-              <li>10-Part Architecture</li>
-              <li>PBR Texturing</li>
-              <li>Optical Engineering</li>
-            </ul>
-          </div>
-          <div className="space-y-2">
-            <h4 className="text-[10px] font-mono text-muted uppercase tracking-widest">Capabilities</h4>
-            <ul className="text-[10px] space-y-1 uppercase">
-              <li>Native Vector Synthesis</li>
-              <li>Typographic Integration</li>
-              <li>Commercial Art Direction</li>
-            </ul>
-          </div>
-        </div>
+      </main>
+
+      {/* Minimalism Footer */}
+      <footer className="w-full py-10 mt-auto text-center text-[9px] font-mono-label tracking-[0.3em] opacity-40">
+        MINIMALIST FOOTER &copy; 2026
       </footer>
+
     </div>
   );
 }
