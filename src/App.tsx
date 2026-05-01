@@ -1,4 +1,4 @@
-import { useState, useEffect, ChangeEvent, DragEvent } from 'react';
+import { useState, useEffect, useRef, ChangeEvent, DragEvent } from 'react';
 import { GoogleGenAI, Type } from "@google/genai";
 import { 
   Sparkles, 
@@ -101,7 +101,7 @@ CRITICAL: INDIAN MARKET FOCUS (LOWER & MIDDLE CLASS)
   - CONTEXTUAL ELABORATION: For every scene mentioned in the script, you MUST elaborate on the environmental details, socioeconomic visual markers of the characters, and the emotional core. The script is your starting point; your prompts must expand it into a full cinematic reality.
   - NO DIALOGUE REFORMING (CRITICAL): You MUST NEVER change, rephrase, or reform the script's lines, words, or sentences. NEVER add or remove any words. Always stick EXACTLY to the final script plan dialogues in each prompt box.
   - NO SKIPPING: You MUST cover the entire script in sequence from start to finish. DO NOT skip or miss any part of the story while creating the script plan or final prompts.
-  - NO ANIMATION (CRITICAL): Never mention "animation", "animated", "cartoon", or any related terms in any B-roll descriptions or prompts. All visuals must be photorealistic cinematic realism.
+  - ALLOW BASIC MOTION GRAPHICS: You may create small basic motion graphics animation or animated B-rolls if it fits the script context. Visuals can be photorealistic cinematic realism or include motion graphics where appropriate.
   - VISUAL FIDELITY: Keep the visuals strictly based on the given scenes in the script.
   - SCRIPT PLAN AS SOURCE (CRITICAL): The "USER SCRIPT PLAN" provided by the user contains exact editable segments (e.g. dialogueSegments and brollSegments). This is your FINAL, ABSOLUTE source for prompt generation. You MUST map every single item in those arrays 1-to-1 to your output scenes. The presence of 'dialogueSegments' represents PASS 1, and 'brollSegments' represents PASS 2. DO NOT re-segment the script or do your own pass; just map the provided arrays sequentially.
   - START WITH HOOK: The first prompt in any video style MUST be a "Hook" that captures attention immediately.
@@ -426,6 +426,18 @@ export default function App() {
   const [loadingHistory, setLoadingHistory] = useState(false);
   const [extraPromptText, setExtraPromptText] = useState('');
   const [isGeneratingExtra, setIsGeneratingExtra] = useState(false);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = '160px';
+      textareaRef.current.style.height = `${Math.min(Math.max(textareaRef.current.scrollHeight, 160), 800)}px`;
+    }
+  }, [idea]);
+
+  const handleScriptChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setIdea(e.target.value);
+  };
 
   useEffect(() => {
     fetchHistory();
@@ -742,7 +754,6 @@ export default function App() {
     try {
       await navigator.clipboard.writeText(prompt);
       setCopiedIndex(index);
-      setTimeout(() => setCopiedIndex(null), 2000);
     } catch (err) {
       console.error("Failed to copy:", err);
     }
@@ -878,29 +889,15 @@ export default function App() {
   return (
     <div className="min-h-screen text-white/90 selection:bg-accent/30 selection:text-highlight flex flex-col font-sans">
       {/* Top Navbar */}
-      <nav className="w-full flex flex-col sm:flex-row justify-between items-center px-4 sm:px-12 py-8 font-mono-label z-50">
-        <div className="flex items-center gap-3 text-white font-bold tracking-widest text-sm mb-4 sm:mb-0">
+      <nav className="w-full flex items-center px-4 sm:px-12 py-8 font-mono-label z-50">
+        <div className="flex items-center gap-3 text-white font-bold tracking-widest text-sm">
           <svg className="w-5 h-5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-          RECRAFT V4
-        </div>
-        <div className="tracking-[0.2em] text-accent font-semibold text-center mb-4 sm:mb-0">AI CREATIVE DIRECTOR</div>
-        <div className="hidden lg:flex gap-6 opacity-60 text-[10px]">
-          <span>VS.8.0</span>
-          <span>ENGINE: GEMINI 3.0</span>
-          <span>STATUS: AUTONOMOUS</span>
+          Master App Video Prompter
         </div>
       </nav>
 
-      <main className="flex-grow max-w-5xl mx-auto w-full px-4 sm:px-8 pb-32 flex flex-col items-center">
+      <main className="flex-grow max-w-5xl mx-auto w-full px-4 sm:px-8 pb-32 pt-12 flex flex-col items-center">
         
-        {/* Hero Section */}
-        <div className="text-center py-20 w-full relative">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[300px] bg-accent/10 blur-[130px] pointer-events-none rounded-full" />
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-[0.02em] text-white mb-6 relative z-10 leading-tight">
-            Harness Advanced Visual<br />Synthesis for Recraft V4.
-          </h1>
-        </div>
-
         {/* Core Controls */}
         <div className="w-full space-y-12 max-w-[900px] relative z-10">
           
@@ -919,10 +916,11 @@ export default function App() {
                 </button>
               </div>
               <textarea 
-                className="input-transparent w-full min-h-[160px] resize-none text-lg leading-relaxed placeholder:text-white/20 focus:text-white transition-colors"
+                ref={textareaRef}
+                className="input-transparent w-full min-h-[160px] resize-none text-lg leading-relaxed placeholder:text-white/20 focus:text-white transition-colors overflow-hidden"
                 placeholder="Paste your video script here. I will segment it and generate visual prompts..."
                 value={idea}
-                onChange={(e) => setIdea(e.target.value)}
+                onChange={handleScriptChange}
               />
             </div>
           </div>
@@ -1024,17 +1022,17 @@ export default function App() {
                 <div className="space-y-6">
                   <div className="flex justify-between items-center px-2">
                     <span className="font-mono-label text-white">SCENE SEQUENCES</span>
-                    <button onClick={addEditableSegment} className="cyber-button px-4 py-2 text-xs flex items-center gap-2 hover:text-white">
+                    <button type="button" onClick={addEditableSegment} className="cyber-button px-4 py-2 text-xs flex items-center gap-2 hover:text-white">
                       <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 5v14M5 12h14"/></svg> 
                       ADD SCENE
                     </button>
                   </div>
                   <div className="space-y-6">
                     {editableSegments.map((seg, idx) => (
-                      <div key={idx} className="cyber-panel p-8 space-y-8 relative group border-white/5 hover:border-accent/30 transition-colors bg-white/[0.01]">
+                      <div key={`segment-${idx}`} className="cyber-panel p-8 space-y-8 relative group border-white/5 hover:border-accent/30 transition-colors bg-white/[0.01]">
                         <div className="flex items-center justify-between border-b border-white/5 pb-4">
                           <span className="font-mono-label text-accent">SEQUENCE {idx + 1}</span>
-                          <button onClick={() => removeEditableSegment(idx)} className="p-2 text-red-500/40 hover:text-red-400 rounded transition-all">
+                          <button type="button" onClick={() => removeEditableSegment(idx)} className="p-2 text-red-500/40 hover:text-red-400 rounded transition-all">
                             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
                           </button>
                         </div>
@@ -1066,15 +1064,15 @@ export default function App() {
                     <div className="space-y-6">
                       <div className="flex justify-between items-center px-2 border-b border-white/5 pb-4">
                         <span className="font-mono-label text-white">DIALOGUE SEQUENCES</span>
-                        <button onClick={addDialogueSegment} className="cyber-button px-4 py-2 text-xs flex items-center gap-2 hover:text-white">
+                        <button type="button" onClick={addDialogueSegment} className="cyber-button px-4 py-2 text-xs flex items-center gap-2 hover:text-white">
                           <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 5v14M5 12h14"/></svg> 
                           ADD DIALOGUE
                         </button>
                       </div>
                       <div className="space-y-4">
                         {editableDialogueSegments.map((seg, idx) => (
-                          <div key={idx} className="cyber-panel p-6 relative group bg-white/[0.01]">
-                            <button onClick={() => removeDialogueSegment(idx)} className="absolute top-6 right-6 p-1 text-red-500/40 hover:text-red-500 transition-all rounded">
+                          <div key={`dialogue-${idx}`} className="cyber-panel p-6 relative group bg-white/[0.01]">
+                            <button type="button" onClick={() => removeDialogueSegment(idx)} className="absolute top-6 right-6 p-1 text-red-500/40 hover:text-red-500 transition-all rounded">
                               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
                             </button>
                             <label className="font-mono-label block mb-4 opacity-50">DIALOGUE LINE {idx+1}</label>
@@ -1090,19 +1088,18 @@ export default function App() {
                     </div>
                   )}
 
-                  {videoStyle !== "Veo 3.1 JSON Storytelling" && videoStyle !== "Veo 3.1 JSON Authoritative Speaker" && (
-                    <div className="space-y-6">
+                  <div className="space-y-6">
                       <div className="flex justify-between items-center px-2 border-b border-white/5 pb-4">
                         <span className="font-mono-label text-white">VISUAL B-ROLL SEQUENCES</span>
-                        <button onClick={addBrollSegment} className="cyber-button px-4 py-2 text-xs flex items-center gap-2 hover:text-white">
+                        <button type="button" onClick={addBrollSegment} className="cyber-button px-4 py-2 text-xs flex items-center gap-2 hover:text-white">
                           <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 5v14M5 12h14"/></svg> 
                           ADD B-ROLL
                         </button>
                       </div>
                       <div className="space-y-4">
                         {editableBrollSegments.map((seg, idx) => (
-                          <div key={idx} className="cyber-panel p-6 relative group bg-white/[0.01]">
-                            <button onClick={() => removeBrollSegment(idx)} className="absolute top-6 right-6 p-1 text-red-500/40 hover:text-red-500 transition-all rounded">
+                          <div key={`broll-${idx}`} className="cyber-panel p-6 relative group bg-white/[0.01]">
+                            <button type="button" onClick={() => removeBrollSegment(idx)} className="absolute top-6 right-6 p-1 text-red-500/40 hover:text-red-500 transition-all rounded">
                               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
                             </button>
                             <label className="font-mono-label block mb-4 opacity-50">VISUAL SHOT {idx+1}</label>
@@ -1116,7 +1113,6 @@ export default function App() {
                         ))}
                       </div>
                     </div>
-                  )}
                 </div>
               )}
 
@@ -1171,16 +1167,9 @@ export default function App() {
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
-                    className={`cyber-panel relative overflow-hidden group/card cursor-pointer transition-all duration-300 ${copiedIndex === idx ? 'border-accent shadow-[0_0_30px_rgba(72,168,154,0.25)]' : 'hover:border-accent/40'}`}
+                    className={`cyber-panel relative overflow-hidden group/card cursor-pointer transition-all duration-300 ${copiedIndex === idx ? 'border-accent bg-accent/5 shadow-[0_0_30px_rgba(72,168,154,0.25)]' : 'hover:border-accent/40'}`}
                     onClick={() => handleCopyPrompt(segment.prompt, idx)}
                   >
-                    <div className="absolute inset-0 bg-black/70 backdrop-blur-sm opacity-0 group-hover/card:opacity-100 transition-all flex items-center justify-center z-10 duration-300 delay-75">
-                      <div className="cyber-button active px-8 py-4 font-mono-label text-[13px] flex items-center gap-3 shadow-[0_0_30px_rgba(72,168,154,0.2)]">
-                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> 
-                        CLICK ANYWHERE TO COPY PROMPT
-                      </div>
-                    </div>
-
                     {copiedIndex === idx && (
                       <div className="absolute top-6 right-6 z-20 bg-accent text-black px-4 py-1.5 rounded-full font-bold text-[9px] tracking-[0.2em] flex items-center gap-2 shadow-[0_0_15px_rgba(72,168,154,0.5)]">
                         <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12"/></svg> 
@@ -1190,7 +1179,7 @@ export default function App() {
 
                     <div className="p-8 md:p-12 relative z-0">
                       <div className="flex flex-col md:flex-row md:items-center gap-6 mb-10 border-b border-white/5 pb-8">
-                        <div className="w-14 h-14 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-accent font-mono-label text-xl shrink-0">
+                        <div className={`w-14 h-14 rounded-xl border flex items-center justify-center font-mono-label text-xl shrink-0 transition-colors ${copiedIndex === idx ? 'bg-accent/20 border-accent/50 text-accent' : 'bg-white/[0.03] border-white/10 text-accent'}`}>
                           {idx + 1}
                         </div>
                         <div>
@@ -1202,11 +1191,13 @@ export default function App() {
                       <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12">
                         <div className="md:col-span-4">
                           <div className="font-mono-label mb-5 opacity-60">NARRATIVE CONTEXT</div>
-                          <p className="text-[13px] leading-relaxed italic text-white/50 border-l border-accent/30 pl-5 pr-2">{segment.scriptText}</p>
+                          <p className={`text-[13px] leading-relaxed italic border-l pl-5 pr-2 transition-colors ${copiedIndex === idx ? 'text-white border-accent' : 'text-white/50 border-accent/30'}`}>{segment.scriptText}</p>
                         </div>
-                        <div className="md:col-span-8 bg-black/40 p-6 rounded-xl border border-white/5">
-                          <div className="font-mono-label mb-5 text-accent opacity-80">GENERATED PAYLOAD</div>
-                          {renderPrompt(segment.prompt)}
+                        <div className={`md:col-span-8 p-6 rounded-xl border transition-colors ${copiedIndex === idx ? 'bg-accent/10 border-accent/30' : 'bg-black/40 border-white/5'}`}>
+                          <div className={`font-mono-label mb-5 transition-colors ${copiedIndex === idx ? 'text-accent' : 'text-accent opacity-80'}`}>GENERATED PAYLOAD</div>
+                          <div className={copiedIndex === idx ? "opacity-100" : "opacity-90"}>
+                            {renderPrompt(segment.prompt)}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -1293,7 +1284,7 @@ export default function App() {
 
       {/* Minimalism Footer */}
       <footer className="w-full py-10 mt-auto text-center text-[9px] font-mono-label tracking-[0.3em] opacity-40">
-        MINIMALIST FOOTER &copy; 2026
+        MASTER APP VIDEO PROMPTER &copy; 2026
       </footer>
 
     </div>
