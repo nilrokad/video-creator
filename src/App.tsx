@@ -1,25 +1,9 @@
 import { useState, useEffect, useRef, ChangeEvent, DragEvent } from 'react';
 import { GoogleGenAI, Type } from "@google/genai";
 import { 
-  Sparkles, 
   Copy, 
   Check, 
-  RefreshCw, 
-  Maximize, 
-  Zap,
-  History,
-  Clock,
-  ChevronRight,
-  BrainCircuit,
-  Terminal,
-  ImagePlus,
-  X,
-  Upload,
-  Trash2,
-  Plus,
-  Settings
 } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
 
 interface EditableSegment {
   title?: string;
@@ -102,10 +86,12 @@ CRITICAL: INDIAN MARKET FOCUS (LOWER & MIDDLE CLASS)
   - NO DIALOGUE REFORMING (CRITICAL): You MUST NEVER change, rephrase, or reform the script's lines, words, or sentences. NEVER add or remove any words. Always stick EXACTLY to the final script plan dialogues in each prompt box.
   - NO SKIPPING: You MUST cover the entire script in sequence from start to finish. DO NOT skip or miss any part of the story while creating the script plan or final prompts.
   - ALLOW BASIC MOTION GRAPHICS: You may create small basic motion graphics animation or animated B-rolls if it fits the script context. Visuals can be photorealistic cinematic realism or include motion graphics where appropriate.
+  - ASTROLOGY SCRIPT HANDLING (CRITICAL): If the script contains astrology concepts, zodiac signs, or Hindi astrology terms (e.g., "Kumbh Rashi" / Aquarius, "Kundli", "Grah", "Shani"), you MUST automatically understand the context and proactively generate relevant animated astrology B-rolls. These B-rolls should feature high-quality motion graphics, glowing zodiac symbols, cosmic planetary alignments, or animated birth charts to visually represent the astrological terms.
   - VISUAL FIDELITY: Keep the visuals strictly based on the given scenes in the script.
   - SCRIPT PLAN AS SOURCE (CRITICAL): The "USER SCRIPT PLAN" provided by the user contains exact editable segments (e.g. dialogueSegments and brollSegments). This is your FINAL, ABSOLUTE source for prompt generation. You MUST map every single item in those arrays 1-to-1 to your output scenes. The presence of 'dialogueSegments' represents PASS 1, and 'brollSegments' represents PASS 2. DO NOT re-segment the script or do your own pass; just map the provided arrays sequentially.
   - START WITH HOOK: The first prompt in any video style MUST be a "Hook" that captures attention immediately.
   - ONE PROMPT PER PANEL: Each item in the "USER SCRIPT PLAN" arrays MUST result in exactly ONE JSON scene constraint. DO NOT combine multiple elements into a single prompt. DO NOT skip any items.
+  - NO MOBILE PHONE IN HAND (CRITICAL): If a selfie camera angle or POV is requested in ANY video style or prompt, the character MUST NOT be holding a mobile phone or camera in their hand. The perspective should simply flow as a selfie angle without explicitly showing the device in the character's hand.
   - THINK LIKE A DIRECTOR: Do not just visualize the literal words. Analyze the SUBTEXT, EMOTIONAL DEPTH, and SOCIAL CONTEXT of the script.
   - SCRIPT UNDERSTANDING: You MUST understand the core message, the characters' motivations, and the setting. If the script is about a midnight conversation, the visuals MUST be dark and moody. If it's about a struggle, the visuals MUST reflect that.
   - Every visual choice (lighting, camera angle, background) must serve the story being told in the script.
@@ -426,6 +412,7 @@ export default function App() {
   const [loadingHistory, setLoadingHistory] = useState(false);
   const [extraPromptText, setExtraPromptText] = useState('');
   const [isGeneratingExtra, setIsGeneratingExtra] = useState(false);
+  const [expandedBrolls, setExpandedBrolls] = useState<number[]>([]);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -722,6 +709,10 @@ export default function App() {
                       type: Type.STRING,
                       description: "A brief description of the visual action or scene."
                     },
+                    isBroll: {
+                      type: Type.BOOLEAN,
+                      description: "Set to true ONLY if this segment is primarily a B-roll or visual action WITHOUT character dialogue."
+                    },
                     prompt: {
                       type: Type.STRING,
                       description: "The final multi-part architectural prompt. For all 'Veo 3.1 JSON' styles, this MUST be a VALID stringified JSON object following the EXACT template defined in the instructions. CRITICAL: You MUST include the full 'negative_prompt' key at the root of this JSON for EVERY segment (except Moodboards). Failure to include the full negative prompt list is a critical failure."
@@ -759,6 +750,13 @@ export default function App() {
     }
   };
 
+  const toggleBroll = (index: number, e: any) => {
+    e.stopPropagation();
+    setExpandedBrolls(prev => 
+      prev.includes(index) ? prev.filter(i => i !== index) : [...prev, index]
+    );
+  };
+
   const handleGenerateExtra = async () => {
     if (!extraPromptText.trim()) return;
     setIsGeneratingExtra(true);
@@ -773,16 +771,30 @@ export default function App() {
       Context: ${lastContext}
       Generate ONE (1) additional prompt segment following the exact video style: ${videoStyle}.
       Output MUST be a single segment object that can be added to the current segments array.
-      Use the same format: { "timestamp": "...", "scriptText": "...", "visualCue": "...", "prompt": "..." }
+      Use the same format: { "timestamp": "...", "scriptText": "...", "visualCue": "...", "isBroll": true, "prompt": "..." }
       
-      CRITICAL: If the style is 'Veo 3.1 JSON', the 'prompt' field MUST be a stringified JSON object following the same rules as the original prompts.`;
+      CRITICAL: 
+      1. This extra segment is for B-Roll. Set 'isBroll' to true.
+      2. You MUST generate a COMPLETE and HYPER-DETAILED prompt. DO NOT abbreviate or truncate the 'prompt' field.
+      3. If the style is 'Veo 3.1 JSON', the 'prompt' field MUST be a stringified JSON object following the same rules as the original prompts.`;
 
       const result = await ai.models.generateContent({
         model: selectedModel,
         contents: { parts: [{ text: prompt }] },
         config: {
           systemInstruction: SYSTEM_PROMPT,
-          responseMimeType: "application/json"
+          responseMimeType: "application/json",
+          responseSchema: {
+             type: Type.OBJECT,
+             properties: {
+               timestamp: { type: Type.STRING },
+               scriptText: { type: Type.STRING },
+               visualCue: { type: Type.STRING },
+               isBroll: { type: Type.BOOLEAN },
+               prompt: { type: Type.STRING }
+             },
+             required: ["timestamp", "scriptText", "visualCue", "prompt"]
+          }
         }
       });
 
@@ -803,7 +815,8 @@ export default function App() {
     setCopiedIndex(null);
   };
 
-  const renderPrompt = (prompt: string) => {
+  const renderPrompt = (prompt?: string) => {
+    if (!prompt) return <div className="text-zinc-500 italic">No prompt generated</div>;
     try {
       const json = JSON.parse(prompt);
       
@@ -902,8 +915,8 @@ export default function App() {
         <div className="w-full space-y-12 max-w-[900px] relative z-10">
           
           {/* Script Input Panel */}
-          <div className="cyber-panel cyber-glowing relative overflow-hidden transition-all duration-500">
-            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-accent to-transparent opacity-60" />
+          <div className="cyber-panel relative overflow-hidden transition-all duration-200">
+            <div className="absolute top-0 left-0 w-full h-[1px] bg-accent/30" />
             <div className="p-8 sm:p-10">
               <div className="flex items-center justify-between mb-8">
                 <span className="font-mono-label text-white tracking-widest">VIDEO SCRIPT</span>
@@ -925,7 +938,7 @@ export default function App() {
             </div>
           </div>
 
-          <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent my-16" />
+          <div className="w-full h-[1px] bg-white/5 my-16" />
 
           {/* AI Engine Selection */}
           <div className="space-y-6">
@@ -1006,13 +1019,10 @@ export default function App() {
               </button>
             </div>
           ) : (
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="space-y-12 mt-20 pt-16 border-t border-white/5"
+            <div className="space-y-12 mt-20 pt-16 border-t border-white/5"
             >
               <div className="flex flex-col items-center gap-4 mb-16">
-                <div className="font-mono-label text-highlight tracking-[0.2em] shadow-accent/20">ANALYSIS COMPLETE. STRUCTURAL PLAN.</div>
+                <div className="font-mono-label text-highlight tracking-[0.2em]">ANALYSIS COMPLETE. STRUCTURAL PLAN.</div>
                 <p className="text-[13px] font-mono text-muted text-center italic max-w-2xl leading-relaxed">
                   "{analysis}"
                 </p>
@@ -1132,10 +1142,10 @@ export default function App() {
                   SYNTHESIZE FINAL BLUEPRINTS
                 </button>
               </div>
-            </motion.div>
+            </div>
           )}
 
-          <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent my-20" />
+          <div className="w-full h-[1px] bg-white/5 my-20" />
 
           {/* Output Section */}
           <div className="w-full relative space-y-12">
@@ -1149,7 +1159,7 @@ export default function App() {
 
             {segments.length === 0 && !loading ? (
               <div className="flex flex-col items-center justify-center py-20 space-y-10 opacity-60">
-                <div className="w-24 h-24 border border-accent/40 rounded-2xl shadow-[0_0_40px_rgba(72,168,154,0.15)] flex items-center justify-center bg-black/50">
+                <div className="w-24 h-24 border border-accent/40 rounded-2xl flex items-center justify-center bg-black/50">
                   <div className="w-10 h-10 border border-white/20 rounded animate-pulse" />
                 </div>
                 <div className="font-mono text-sm tracking-[0.1em] text-white/60">Awaiting architectural directives</div>
@@ -1161,48 +1171,82 @@ export default function App() {
               </div>
             ) : (
               <div className="space-y-12 shrink-0">
-                {segments.map((segment, idx) => (
-                  <motion.div 
-                    key={idx}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    className={`cyber-panel relative overflow-hidden group/card cursor-pointer transition-all duration-300 ${copiedIndex === idx ? 'border-accent bg-accent/5 shadow-[0_0_30px_rgba(72,168,154,0.25)]' : 'hover:border-accent/40'}`}
-                    onClick={() => handleCopyPrompt(segment.prompt, idx)}
-                  >
-                    {copiedIndex === idx && (
-                      <div className="absolute top-6 right-6 z-20 bg-accent text-black px-4 py-1.5 rounded-full font-bold text-[9px] tracking-[0.2em] flex items-center gap-2 shadow-[0_0_15px_rgba(72,168,154,0.5)]">
-                        <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12"/></svg> 
-                        COPIED
-                      </div>
-                    )}
+                {segments.map((segment, idx) => {
+                  const isBroll = segment.isBroll || (segment.visualCue && segment.visualCue.toLowerCase().includes('b-roll')) || (!segment.scriptText && segment.visualCue);
+                  const isExpanded = expandedBrolls.includes(idx);
+                  
+                  return (
+                    <div 
+                      key={idx}
+                      className={`cyber-panel relative overflow-hidden group/card transition-all duration-200 ${copiedIndex === idx ? 'border-accent bg-accent/5' : 'hover:border-accent/40'} ${!isBroll ? 'cursor-pointer' : ''}`}
+                      onClick={!isBroll ? () => handleCopyPrompt(segment.prompt, idx) : undefined}
+                    >
+                      {copiedIndex === idx && !isBroll && (
+                        <div className="absolute top-6 right-6 z-20 bg-accent text-black px-4 py-1.5 rounded-full font-bold text-[9px] tracking-[0.2em] flex items-center gap-2">
+                          <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12"/></svg> 
+                          COPIED
+                        </div>
+                      )}
 
-                    <div className="p-8 md:p-12 relative z-0">
-                      <div className="flex flex-col md:flex-row md:items-center gap-6 mb-10 border-b border-white/5 pb-8">
-                        <div className={`w-14 h-14 rounded-xl border flex items-center justify-center font-mono-label text-xl shrink-0 transition-colors ${copiedIndex === idx ? 'bg-accent/20 border-accent/50 text-accent' : 'bg-white/[0.03] border-white/10 text-accent'}`}>
-                          {idx + 1}
-                        </div>
-                        <div>
-                          <span className="font-mono-label text-white/40 block mb-2 tracking-[0.2em]">TIMECODE {segment.timestamp}</span>
-                          <h3 className="text-xl md:text-2xl font-bold text-white tracking-wide leading-tight">{segment.visualCue}</h3>
-                        </div>
-                      </div>
-                      
-                      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12">
-                        <div className="md:col-span-4">
-                          <div className="font-mono-label mb-5 opacity-60">NARRATIVE CONTEXT</div>
-                          <p className={`text-[13px] leading-relaxed italic border-l pl-5 pr-2 transition-colors ${copiedIndex === idx ? 'text-white border-accent' : 'text-white/50 border-accent/30'}`}>{segment.scriptText}</p>
-                        </div>
-                        <div className={`md:col-span-8 p-6 rounded-xl border transition-colors ${copiedIndex === idx ? 'bg-accent/10 border-accent/30' : 'bg-black/40 border-white/5'}`}>
-                          <div className={`font-mono-label mb-5 transition-colors ${copiedIndex === idx ? 'text-accent' : 'text-accent opacity-80'}`}>GENERATED PAYLOAD</div>
-                          <div className={copiedIndex === idx ? "opacity-100" : "opacity-90"}>
-                            {renderPrompt(segment.prompt)}
+                      <div className={`p-8 ${isBroll ? 'md:p-8' : 'md:p-12'} relative z-0`}>
+                        <div className={`flex flex-col md:flex-row md:items-center justify-between gap-6 ${isBroll ? '' : 'mb-10 border-b border-white/5 pb-8'}`}>
+                          <div className="flex flex-col md:flex-row md:items-center gap-6">
+                            <div className={`w-14 h-14 rounded-xl border flex items-center justify-center font-mono-label text-xl shrink-0 transition-colors ${copiedIndex === idx ? 'bg-accent/20 border-accent/50 text-accent' : 'bg-white/[0.03] border-white/10 text-accent'}`}>
+                              {idx + 1}
+                            </div>
+                            <div>
+                              <span className="font-mono-label text-white/40 block mb-2 tracking-[0.2em]">{isBroll ? 'B-ROLL ' : ''}TIMECODE {segment.timestamp}</span>
+                              <h3 className="text-xl md:text-2xl font-bold text-white tracking-wide leading-tight">{segment.visualCue}</h3>
+                            </div>
                           </div>
+                          
+                          {isBroll && (
+                            <div className="flex items-center gap-4">
+                              <button 
+                                onClick={(e) => toggleBroll(idx, e)}
+                                className="cyber-button px-4 py-2 text-[10px] flex items-center gap-2 hover:text-white"
+                              >
+                                {isExpanded ? 'HIDE PROMPT' : 'SHOW PROMPT'}
+                                <svg className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-180' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 9l6 6 6-6"/></svg>
+                              </button>
+                              <button 
+                                onClick={(e) => { e.stopPropagation(); handleCopyPrompt(segment.prompt, idx); }}
+                                className={`cyber-button px-4 py-2 text-[10px] flex items-center gap-2 transition-colors ${copiedIndex === idx ? 'bg-accent text-black border-accent' : 'hover:text-white hover:border-accent'}`}
+                              >
+                                {copiedIndex === idx ? (
+                                  <>
+                                    <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12"/></svg>
+                                    COPIED
+                                  </>
+                                ) : (
+                                  <>
+                                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                                    COPY ACTION
+                                  </>
+                                )}
+                              </button>
+                            </div>
+                          )}
                         </div>
+                        
+                        {(!isBroll || isExpanded) && (
+                          <div className={`grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 ${isBroll ? 'mt-8 border-t border-white/5 pt-8' : ''}`}>
+                            <div className="md:col-span-4">
+                              <div className="font-mono-label mb-5 opacity-60">NARRATIVE CONTEXT</div>
+                              <p className={`text-[13px] leading-relaxed italic border-l pl-5 pr-2 transition-colors ${copiedIndex === idx ? 'text-white border-accent' : 'text-white/50 border-accent/30'}`}>{segment.scriptText || "No dialogue context."}</p>
+                            </div>
+                            <div className={`md:col-span-8 p-6 rounded-xl border transition-colors ${copiedIndex === idx ? 'bg-accent/10 border-accent/30' : 'bg-black/40 border-white/5'}`}>
+                              <div className={`font-mono-label mb-5 transition-colors ${copiedIndex === idx ? 'text-accent' : 'text-accent opacity-80'}`}>GENERATED PAYLOAD</div>
+                              <div className={copiedIndex === idx ? "opacity-100" : "opacity-90"}>
+                                {renderPrompt(segment.prompt)}
+                              </div>
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </div>
-                  </motion.div>
-                ))}
+                  );
+                })}
 
                 {/* Extra Prompt Generation */}
                 <div className="cyber-panel p-8 md:p-12 mt-16 border-dashed border-white/10 bg-black/20 hover:border-white/30 transition-all relative z-10">
@@ -1236,7 +1280,7 @@ export default function App() {
         {/* History Area */}
         {history.length > 0 && (
           <div className="w-full space-y-12 mt-24 relative z-10">
-            <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent mb-16" />
+            <div className="w-full h-[1px] bg-white/5 mb-16" />
             <div className="font-mono-label text-center mb-12 tracking-[0.2em] text-white/50">ARCHITECTURAL HISTORY</div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-[900px] mx-auto w-full">
               {history.slice(0, 6).map((item, idx) => (
