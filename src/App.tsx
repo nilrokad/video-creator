@@ -247,7 +247,8 @@ CRITICAL: INDIAN MARKET FOCUS (LOWER & MIDDLE CLASS)
 
   - VEO 3.1 JSON TEMPLATE (USED FOR ALL 5 STYLES):
     {
-      "version": "veo-3.1",
+      "scene_number": "[Current Scene Number, e.g., 01]",
+      "b_roll_number": "[Current B-Roll Number, e.g., 01 or 'N/A' if dialogue]",
       "output": {
         "duration_sec": [Total duration of this segment, e.g., 8],
         "fps": 24,
@@ -821,9 +822,15 @@ export default function App() {
       const json = JSON.parse(prompt);
       
       // Handle Veo 3.1 JSON format
-      if (json && json.version === "veo-3.1") {
+      if (json && (json.scene_number || json.version === "veo-3.1")) {
         return (
           <div className="space-y-4">
+            {(json.scene_number || json.b_roll_number) && (
+              <div className="flex gap-4 mb-4 font-mono text-[11px] text-accent">
+                {json.scene_number && <span>SCENE: {json.scene_number}</span>}
+                {json.b_roll_number && <span>B-ROLL: {json.b_roll_number}</span>}
+              </div>
+            )}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-[10px] font-mono uppercase tracking-widest text-muted">
               <div className="bg-white/5 p-2 rounded">
                 <span className="text-white block mb-1 opacity-50">Duration</span>
